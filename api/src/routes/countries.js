@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const { Country } = require('../db');
+const { Country, Touristactivity } = require('../db');
 
 const { Op } = require('sequelize');
 
@@ -27,6 +27,15 @@ const getApiInfo = async () => {
     return countriesApi;
 }
 
+const getApiInfoDetail = async (id) => {
+    const apiUrl = await axios.get('https://restcountries.com/v3/all');
+    const countriesApiDetail = await apiUrl.data.find(country => id === country.cca3)
+    return {
+        subregion: countriesApiDetail.subregion,
+        area: countriesApiDetail.area
+    };
+}
+
 router.get('/', async (req, res, next) => {
     /*Imagen de la bandera ,Nombre , Continente ,cantidad de població */
 
@@ -47,6 +56,7 @@ router.get('/', async (req, res, next) => {
     }
 
     if(!name) return res.status(200).json(dbCountries.map(country => country.name));
+    //
 
     try {
         let country = await Country.findAll({
@@ -66,8 +76,40 @@ router.get('/', async (req, res, next) => {
     
 })
 
-router.post('/',  (req, res, next) => {
-    res.send('soy post /countries');
+router.get('/:idPais',  async (req, res, next) => {
+    /* 
+    Subregión
+    Área (Mostrarla en km2 o millones de km2)
+    Actividades turísticas con toda su información asociada
+    */
+    const {idPais} = req.params;
+    const countryDb = await Country.findOne({
+        where: {id: idPais},
+        include: Touristactivity
+    })
+    /* COUNTRYDB TRAE : 
+    - Los campos mostrados en la ruta principal para cada país (imagen de la bandera, nombre, código de país de 3 letras y continente)
+     - Código de país de 3 letras (id)
+     Capital
+    */
+    const countryDetailApi = await getApiInfoDetail(idPais);
+    
+    countryDb['subregion'] = countryDetailApi.subregion;
+    countryDb['area'] = countryDetailApi.area;
+    
+    
+    res.send(countryDb);
+})
+
+router.post('/:countryId/activity/:activityId', async (req, res, next) => {
+    try {
+        const {countryId, activityId} = req.params;
+        const country = await Country.findByPk(countryId);
+        await country.addTouristactivity(activityId);
+        res.send(200);
+    } catch (err) {
+        next(err);
+    }
 })
 
 
