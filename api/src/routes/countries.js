@@ -55,7 +55,7 @@ router.get('/', async (req, res, next) => {
         next(error);
     }
 
-    if(!name) return res.status(200).json(dbCountries.map(country => country.name));
+    if(!name) return res.status(200).json(dbCountries);
     //
 
     try {
