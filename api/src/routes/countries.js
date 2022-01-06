@@ -101,6 +101,7 @@ router.get('/:idPais',  async (req, res, next) => {
     res.send(countryDb);
 })
 
+
 router.post('/:countryId/activity/:activityId', async (req, res, next) => {
     try {
         const {countryId, activityId} = req.params;

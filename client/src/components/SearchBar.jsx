@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { searchCountry } from '../store/actions'
+import { searchCountry, fetchCountries } from '../store/actions'
 
 
 export default function SearchBar() {
@@ -16,16 +16,20 @@ export default function SearchBar() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(search)
         dispatch(searchCountry(search))
         setSearch('');
     }
+    const reloadCountries = (e) => {
+        e.preventDefault();
+        dispatch(fetchCountries())
+    }
 
     return (
-        <div>   
-            <input type="text" placeholder= 'Search country..' onChange={(e) => inputChange(e)} 
+        <div> 
+            <input type="text" placeholder= 'Search country..' onChange={inputChange} 
              value={search}/>
-            <button type="submit" onClick={(e) => handleSubmit(e)}>Search</button>
+            <button type="submit" onClick={handleSubmit}>Search</button>
+            <button onClick={reloadCountries}>Reload all countries</button>
         </div>
     )
 }

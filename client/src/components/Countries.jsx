@@ -16,13 +16,11 @@ export default function Countries() {
     return (
         
         <div>
-            {/* ESTA SOLUCION ES TEMPORAL PORQUE AL HACER LA BUSQUEDA DEJA DE SER UN ARRAY Y PASAR A SER UN UNICO OBJETO Y NO SE PUEDE USAR EL MAP*/}
-            {console.log('LOS PAISES SON'+ countries.length)}
-            {countries.length > 1 ? countries.map((country,index) => {
+     
+            {countries && countries.map((country,index) => {
                 return <Country key={index} name={country.name} image={country.flagImage} continent={country.continent}/>
-            }) : <Country  name={countries.name} image={countries.flagImage} continent={countries.continent}/>}
-            
-            
+            }) }
+          
         </div>
     )
 }

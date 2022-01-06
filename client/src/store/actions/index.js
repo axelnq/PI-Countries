@@ -29,11 +29,10 @@ export  function fetchCountries() {
     }
 }
 
-export function searchCountry(id) {
+export function searchCountry(name) {
     return async function(dispatch) {
         try {
-            let countries = await axios.get('http://localhost:3001/api/countries/' + id)
-            console.log(countries);
+            let countries = await axios.get('http://localhost:3001/api/countries?name=' + name)
             dispatch({
                 type: SEARCH_COUNTRY,
                 payload: countries.data   
