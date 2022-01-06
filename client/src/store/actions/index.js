@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const FETCH_COUNTRIES = 'FETCH_COUNTRIES';
 export const SEARCH_COUNTRY = 'SEARCH_COUNTRY';
+export const SORT = 'SORT';
 
 
 export  function fetchCountries() {
@@ -40,5 +41,12 @@ export function searchCountry(name) {
         } catch (e) {
              console.log(e)
         }
+    }
+}
+
+export function sort(order) {
+    return {
+        type: SORT,
+        payload: order
     }
 }

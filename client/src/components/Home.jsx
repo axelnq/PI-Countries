@@ -1,12 +1,13 @@
 import React from 'react';
 import Countries from './Countries'
 import SearchBar from './SearchBar';
+import Order from './Order';
 
 export default function Home() {
     return (
         <div>
-            Soy el Home
             <SearchBar/>
+            <Order/>
             <Countries/>
         </div>
     )

@@ -6,7 +6,7 @@ import { searchCountry, fetchCountries } from '../store/actions'
 export default function SearchBar() {
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
-
+    
     
 
     const inputChange = (e) => {
