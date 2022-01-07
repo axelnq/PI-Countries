@@ -107,7 +107,7 @@ router.post('/:countryId/activity/:activityId', async (req, res, next) => {
         const {countryId, activityId} = req.params;
         const country = await Country.findByPk(countryId);
         await country.addTouristactivity(activityId);
-        res.send(200);
+        res.sendStatus(200);
     } catch (err) {
         next(err);
     }

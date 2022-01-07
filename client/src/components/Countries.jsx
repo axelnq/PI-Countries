@@ -16,9 +16,9 @@ export default function Countries() {
     return (
         
         <div>
-     
-            {countries && countries.map((country,index) => {
-                return <Country key={index} name={country.name} image={country.flagImage} continent={country.continent}/>
+            {console.log(countries)}
+            {countries && countries.map((country) => {
+                return <Country key={country.id} id={country.id} name={country.name} image={country.flagImage} continent={country.continent}/>
             }) }
           
         </div>

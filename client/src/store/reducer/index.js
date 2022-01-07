@@ -1,9 +1,10 @@
-import { FETCH_COUNTRIES, SEARCH_COUNTRY, SORT} from '../actions';
+import { FETCH_COUNTRIES, SEARCH_COUNTRY, SORT, FILTER, FETCH_COUNTRY_DETAIL} from '../actions';
 import { ASCENDING, DESCENDING, ALPHABETIC, POPULATION } from "../../constantes/Order"
 
 const initialState = {
     countries: [],
-    activities: []
+    activities: [],
+    countryDetail: {}
 }
 
 export default function reducer (state=initialState, action) {
@@ -37,6 +38,21 @@ export default function reducer (state=initialState, action) {
                 ...state,
                 countries: orderedCountries
             }
+        case FILTER:
+           
+
+            let filteredCountries = state.countries.filter(country => country.continent === action.payload)
+            
+            return {
+                ...state,
+                countries: filteredCountries
+            }
+        case FETCH_COUNTRY_DETAIL:
+            return {
+                ...state,
+                countryDetail: action.payload
+            }
+
         default:
             return state;
     }
