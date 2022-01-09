@@ -1,5 +1,5 @@
 import { FETCH_COUNTRIES, SEARCH_COUNTRY, SORT, FILTER, FETCH_COUNTRY_DETAIL} from '../actions';
-import { ASCENDING, DESCENDING, ALPHABETIC, POPULATION } from "../../constantes/Order"
+import { ASCENDING, DESCENDING, ALPHABETIC, POPULATION, CONTINENT, TOURIST_ACTIVITY} from "../../constantes/Order"
 
 const initialState = {
     countries: [],
@@ -40,8 +40,13 @@ export default function reducer (state=initialState, action) {
             }
         case FILTER:
            
-
-            let filteredCountries = state.countries.filter(country => country.continent === action.payload)
+            let typeFilter = action.payload.type;
+            
+            let filteredCountries = state.countries.filter(country => {
+                return typeFilter === TOURIST_ACTIVITY ? country.touristactivities.some(activity => activity.season === action.payload.value): country.continent === action.payload.value
+            }
+            )
+            console.log()
             
             return {
                 ...state,

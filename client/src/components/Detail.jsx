@@ -52,7 +52,6 @@ export default function Detail({match}) {
    
 
     return (
-        // ,  , , ,  ,,, actividad turistica
         <div>
             <h2>ID: {country.id} - Country: {country.name} | Continent: {country.continent}</h2>
             <img src={country.flagImage} alt={`Flag of ${country.name}`}/>
@@ -61,8 +60,13 @@ export default function Detail({match}) {
             <p>Capital: {country.capital}</p>
             <p>Area: {country.area}</p>
             <p>Population: {country.population}</p>
-            <p>Tourist Activities es un array de nombre "touristactivities"</p>
-            
+            <h3>Tourist Activities:</h3>
+            {country.touristactivities && country.touristactivities.map(activity => {
+                return <div key={activity.id}>
+                          <p>Name:{activity.name}, Difficulty: {activity.difficulty} , Duration:{activity.duration}, Season: {activity.season}</p>
+                       </div>
+            })}
+            {console.log(country.touristactivities)}
             <Link to='/home'><button>BACK HOME</button></Link>
         </div>
     ) 

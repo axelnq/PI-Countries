@@ -94,6 +94,6 @@ export function postActivity(activity) {
     return async function(dispatch) {
         const response = await axios.post('http://localhost:3001/api/activity/',activity);
 
-        return response;
+        return response.data;
     }
 }

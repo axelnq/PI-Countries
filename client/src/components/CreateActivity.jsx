@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postActivity, fetchCountries} from '../store/actions' 
 import {Link} from 'react-router-dom';
 import '../css/CreateActivity.css';
+import axios from 'axios'
 
 export default function CreateActivity() {
 
@@ -29,15 +30,22 @@ export default function CreateActivity() {
         e.preventDefault();
         setInput((prev) => ({...prev, [e.target.name]:e.target.value}))
     }
-    let handleSubmit = (e) => {
+    let  handleSubmit =  (e) => {
         e.preventDefault();
-        dispatch(postActivity(input));
+        let promise = dispatch(postActivity(input));
+        promise.then ((value) => {
+            input.countriesArray && input.countriesArray.map(async country => {
+                const response = await axios.post(`http://localhost:3001/api/countries/${country}/activity/${value.id}`);
+            })
+        })
         setInput({
             name:"",
             difficulty:"",
             duration:"",
-            season:""
+            season:"",
+            countriesArray:[]
         })
+        
     }
     let handleCheck = (e) => {
         if(e.target.checked) {
@@ -80,18 +88,20 @@ export default function CreateActivity() {
                     <label><input type="radio" name="season" value="Fall" onChange={handleCheck}/>Fall</label>
                     <label><input type="radio" name="season" value="Winter" onChange={handleCheck}/>Winter</label>
                 </div>
+                
+               
                 <div>
                 <select onChange={handleSelect}>
                     {countries && countries.map((country) =>{
-                        return <option value={country.name}>{country.name}</option>
+                        return <option key={country.id}value={country.id}>{country.name}</option>
                     })}
                 </select>
 
-                <ul>{input.countriesArray.map((country) => {
-                    return <li>{country}</li>
+                <ul>{input.countriesArray && input.countriesArray.map((country,index) => {
+                    return <li key={index}>{country}</li>
                 })}</ul>
                 </div>
-
+              
                 <br/>
                 <input type="submit" value="CREATE"/>
                 

@@ -45,11 +45,15 @@ router.get('/', async (req, res, next) => {
 
     try {
         // Si tengo la db con info no hago nada
-        var dbCountries = await Country.findAll();
+        var dbCountries = await Country.findAll({
+            include:Touristactivity
+        });
         // Si no tengo datos los creo
         if(!dbCountries.length) {
             await Country.bulkCreate(apiCountries);
-            dbCountries = await Country.findAll();
+            dbCountries = await Country.findAll({
+                include:Touristactivity
+            });
         }
     } catch(error) {
         next(error);
