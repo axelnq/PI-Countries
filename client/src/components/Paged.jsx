@@ -1,0 +1,22 @@
+import React from 'react';
+import '../css/Paged.css';
+
+export default function Paged({countriesPerPage, allCountries, paged}) {
+
+    const pageNumbers = [];
+    // Al ser 250 paises y el PI requerir que en la primera pagina solo se vean 9 , sobra un pais , entonces sumamos 1 pagina
+    for (let i = 1; i <=Math.ceil((allCountries/countriesPerPage)+1); i++) {
+        pageNumbers.push(i);
+    }
+
+  
+
+    return (
+        <ul className="pages">
+             { pageNumbers && pageNumbers.map(pageNumber =>{
+        return <li  key={pageNumber}><button onClick={() => paged(pageNumber)}>{pageNumber}</button></li>
+     })}
+
+        </ul>
+    )
+}

@@ -33,7 +33,7 @@ export default function reducer (state=initialState, action) {
                 }
                 return 0;
             })
-        
+            console.log('array ordenado', orderedCountries)
             return {
                 ...state,
                 countries: orderedCountries
