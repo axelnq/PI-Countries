@@ -1,3 +1,12 @@
 div {
     color: #fff;
 }
+
+span.danger {
+    color: red;
+    font-size: 10px;
+  }
+  
+input.danger {
+    border: 2px solid red;
+}

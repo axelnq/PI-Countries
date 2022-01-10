@@ -5,15 +5,14 @@ import { fetchCountries } from '../store/actions'
 import Country from './Country'
 import Loading from './Loading'
 import Paged from './Paged'
+import '../css/Countries.css'
 
 export default function Countries() {
 
     let countries = useSelector((state) => state.countries)
     let dispatch = useDispatch();
-    let contador = 0;
-    countries.forEach(country => contador++)
     
-
+    // Paginado 
     const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(1);
     const [countriesPerPage, setCountriesPerPage] = useState(10)
@@ -21,6 +20,7 @@ export default function Countries() {
     let firstCountryIndex = lastCountryIndex - countriesPerPage; // 9
    
     let countriesPage = []
+    
     if(page === 1) {
         console.log('firstIndex page 1',firstCountryIndex)
         console.log('lastIndex page 1',lastCountryIndex)
@@ -30,15 +30,13 @@ export default function Countries() {
         console.log(`lastCountryIndex ${lastCountryIndex} ${page}`)
         countriesPage = countries.slice(firstCountryIndex-1,lastCountryIndex-1);
     }
-    
- 
     console.log(countriesPage);
 
     let paged = (numberPage) =>{
         setPage(numberPage)
     }
 
-
+    // Paginado
     const changeState= () => {
         setLoading(true);
         setTimeout(() =>{
@@ -63,11 +61,11 @@ export default function Countries() {
         
         <div>
             <Paged countriesPerPage={countriesPerPage} allCountries={countries.length} paged={paged}/>
-            
+            <div className="countriesContainer">
             {countriesPage && countriesPage.map((country) => {
                 return <Country key={country.id} id={country.id} name={country.name} image={country.flagImage} continent={country.continent}/>
             }) }
-          
+            </div>
         </div>
     )
     }

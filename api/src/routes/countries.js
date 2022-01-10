@@ -12,6 +12,7 @@ const router = Router();
 
 const getApiInfo = async () => {
     const apiUrl = await axios.get('https://restcountries.com/v3/all');
+    console.log('llamado a la api')
     const countriesApi = await apiUrl.data.map(country => {
         let capital = "";
         country.capital ? capital = country.capital[0] : capital = "Without capital"
@@ -41,7 +42,6 @@ router.get('/', async (req, res, next) => {
 
     const {name} = req.query;
 
-    const apiCountries = await getApiInfo();
 
     try {
         // Si tengo la db con info no hago nada
@@ -50,6 +50,7 @@ router.get('/', async (req, res, next) => {
         });
         // Si no tengo datos los creo
         if(!dbCountries.length) {
+            const apiCountries = await getApiInfo();
             await Country.bulkCreate(apiCountries);
             dbCountries = await Country.findAll({
                 include:Touristactivity

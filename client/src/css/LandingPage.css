@@ -1,0 +1,19 @@
+.landing {
+    position: absolute;
+    left:45%;
+    top:35%;
+}
+
+.landing button {
+    width:250px;
+    height:100px;
+    font-size:40px;
+    border-radius:10px;
+    border:none;
+    background-color:#578;
+}
+
+.landing :hover {
+    background-color:rgb(73, 191, 250);
+    color:#FFF;
+}

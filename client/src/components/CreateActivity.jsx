@@ -5,16 +5,32 @@ import {Link} from 'react-router-dom';
 import '../css/CreateActivity.css';
 import axios from 'axios'
 
+function validate(input){
+    let errors = {};
+
+    if(!input.name) {
+        errors.name = 'Name is required';
+    }
+
+    return errors;
+}
+
+
+
 export default function CreateActivity() {
 
 
-    let [input, setInput] = useState({
+    const [input, setInput] = useState({
         name:"",
         difficulty:"",
         duration:"",
         season:"",
         countriesArray:[]
     })
+
+    const [error, setError] = useState({});
+
+    const [disabled, setDisabled] = useState(true);
 
     const dispatch = useDispatch();
    
@@ -25,10 +41,30 @@ export default function CreateActivity() {
  
     
     const countries = useSelector((state) => state.countries)
+
+
+    let validateForm = (errors) => {
+        let valid = true;
+        Object.values(errors).forEach( (val) => val.length > 0 && (valid = false)
+        );
+    
+        if(valid){
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+    }
     
     let handleChange = (e) => {
-        e.preventDefault();
+       
         setInput((prev) => ({...prev, [e.target.name]:e.target.value}))
+     
+        let objError = validate({...input,[e.target.name]:e.target.value})
+        
+        setError(objError);
+       
+        validateForm(objError);
+
     }
     let  handleSubmit =  (e) => {
         e.preventDefault();
@@ -70,7 +106,11 @@ export default function CreateActivity() {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Name</label>
-                    <input type="text" name="name" value={input.name} onChange={handleChange}/>
+                    
+                    <input className={error.name && 'danger'} type="text" name="name" value={input.name} onChange={handleChange}/>
+                    {error.name && (
+                        <span className="danger">{error.name}</span>
+                    )}
                 </div>
                 <div>
                     <label>Difficulty</label>
@@ -103,7 +143,8 @@ export default function CreateActivity() {
                 </div>
               
                 <br/>
-                <input type="submit" value="CREATE"/>
+                {disabled ? null : <input  type="submit" value="CREATE"/>}
+                
                 
                 
             </form>

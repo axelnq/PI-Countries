@@ -1,8 +1,19 @@
-h3 {
-    color:white;
-}
-
-img {
+.countryCard {
+    border: 1px solid #fff;
     width:350px;
     height:250px;
+    margin-top:20px;
+}
+
+
+.countryCard h3 {
+    color:white;
+    margin:5px;
+    
+}
+
+.countryCard img {
+    width:350px;
+    height:190px;
+    
 }
