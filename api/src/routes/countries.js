@@ -12,7 +12,7 @@ const router = Router();
 
 const getApiInfo = async () => {
     const apiUrl = await axios.get('https://restcountries.com/v3/all');
-    console.log('llamado a la api')
+    
     const countriesApi = await apiUrl.data.map(country => {
         let capital = "";
         country.capital ? capital = country.capital[0] : capital = "Without capital"
@@ -29,11 +29,21 @@ const getApiInfo = async () => {
 }
 
 const getApiInfoDetail = async (id) => {
-    const apiUrl = await axios.get('https://restcountries.com/v3/all');
-    const countriesApiDetail = await apiUrl.data.find(country => id === country.cca3)
+    const apiCountryDetail = await axios.get('https://restcountries.com/v3/alpha/' + id);
+    // const countriesApiDetail = await apiUrl.data.find(country => id === country.cca3)
+    
+    let country = apiCountryDetail.data[0]
+    let capital = "";
+    country.capital ? capital = country.capital[0] : capital = "Without capital"
     return {
-        subregion: countriesApiDetail.subregion,
-        area: countriesApiDetail.area
+        id: country.cca3,
+        name: country.name.common,
+        continent:country.region,
+        population:country.population,
+        flagImage:country.flags[0],
+        capital:capital,
+        subregion: country.subregion,
+        area: country.area
     };
 }
 
@@ -71,7 +81,7 @@ router.get('/', async (req, res, next) => {
                 }
             }
         })
-        console.log(country);
+        
         if(Object.keys(country).length === 0) return res.status(400).send({message: "This country doesn't exist."})
 
         return res.status(200).json(country);
@@ -88,24 +98,35 @@ router.get('/:idPais',  async (req, res, next) => {
     Actividades turísticas con toda su información asociada
     */
     const {idPais} = req.params;
+    /*
     const countryDb = await Country.findOne({
         where: {id: idPais},
         include: Touristactivity
     })
+    */
+
     /* COUNTRYDB TRAE : 
     - Los campos mostrados en la ruta principal para cada país (imagen de la bandera, nombre, código de país de 3 letras y continente)
      - Código de país de 3 letras (id)
      Capital
     */
+
+     /*
     const countryDetailApi = await getApiInfoDetail(idPais);
     
     countryDb['subregion'] = countryDetailApi.subregion;
     countryDb['area'] = countryDetailApi.area;
-    
-    
-    res.send(countryDb);
+    */
+    try {
+    const country = await getApiInfoDetail(idPais);
+    res.send(country);
+    } catch(error) {
+        next(error);
+    }
 })
 
+/*
+Ruta que usaba para conectar los modelos Country y TouristActivities antes de usar el setCountries en el post activity
 
 router.post('/:countryId/activity/:activityId', async (req, res, next) => {
     try {
@@ -117,6 +138,7 @@ router.post('/:countryId/activity/:activityId', async (req, res, next) => {
         next(err);
     }
 })
+*/
 
 
 module.exports = router;

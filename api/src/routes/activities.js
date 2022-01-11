@@ -1,21 +1,23 @@
 const { Router } = require('express');
 
-const { Touristactivity } = require('../db');
+const { Touristactivity, Country } = require('../db');
 
 
 const router = Router();
 
 
-router.get('/',  (req, res, next) => {
-    res.send('soy get /activities');
-})
+router.get('/',  async (req, res, next) => {
+    try {
+        // Si tengo la db con info no hago nada
+        var dbActivities = await Touristactivity.findAll(({
+            include:Country
+        }));
 
-/*
-Nombre
-Dificultad
-Duración
-Temporada
-*/
+    } catch(error) {
+        next(error);
+    }
+    res.send(dbActivities);
+})
 
 router.post('/',  async (req, res, next) => {
 
@@ -32,9 +34,10 @@ router.post('/',  async (req, res, next) => {
            
         })
         
-        await activity.setCountries(countriesArray) // countriesIds seria countriesArray
-        
+        await activity.setCountries(countriesArray) 
+       
         res.json({created:created,activity})
+
     } catch (err) {
         next(err);
     }
