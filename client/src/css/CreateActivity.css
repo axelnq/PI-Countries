@@ -10,3 +10,7 @@ span.danger {
 input.danger {
     border: 2px solid red;
 }
+
+div.danger {
+    border: 2px solid red;
+}
