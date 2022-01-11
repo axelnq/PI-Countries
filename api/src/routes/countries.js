@@ -119,6 +119,13 @@ router.get('/:idPais',  async (req, res, next) => {
     */
     try {
     const country = await getApiInfoDetail(idPais);
+    const countryDb = await Country.findOne({
+        where: {id: idPais},
+        include: Touristactivity,
+    })
+
+    country['touristactivities'] = countryDb.touristactivities;
+    
     res.send(country);
     } catch(error) {
         next(error);
