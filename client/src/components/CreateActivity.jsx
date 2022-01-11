@@ -18,9 +18,9 @@ function validate(input){
 
     if(!input.duration) {
         errors.duration = 'Duration is required';
-    } else if (isNaN(input.duration)) {
+    } /*else if (isNaN(input.duration)) {
         errors.duration = "Must be a number"
-    }
+    }*/
    
     if(!input.season) {
         errors.season = 'Select a season is required';
@@ -85,12 +85,16 @@ export default function CreateActivity() {
     }
     let  handleSubmit =  (e) => {
         e.preventDefault();
+       
+        dispatch(postActivity(input));
+        /*
         let promise = dispatch(postActivity(input));
         promise.then ((value) => {
             input.countriesArray && input.countriesArray.map(async country => {
                 const response = await axios.post(`http://localhost:3001/api/countries/${country}/activity/${value.id}`);
             })
         })
+        */
         setInput({
             name:"",
             difficulty:"",

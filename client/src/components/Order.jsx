@@ -17,7 +17,6 @@ export default function Order() {
         setType(e.target.value);
     }
 
-
     const handleClick = (e) => {
         let orderAndType = {order,type};
         dispatch(sort(orderAndType));

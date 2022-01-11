@@ -20,16 +20,21 @@ Temporada
 router.post('/',  async (req, res, next) => {
 
     try {
-        const {name, difficulty, duration, season} = req.body;
-
-        const newActivity = await Touristactivity.create({
-            name,
-            difficulty,
-            duration,
-            season
+        const {name, difficulty, duration, season, countriesArray} = req.body;
+       
+        let [activity, created] = await Touristactivity.findOrCreate({
+            where: {
+                name,
+                difficulty,
+                duration,
+                season
+            },
+           
         })
-
-        res.json(newActivity);
+        
+        await activity.setCountries(countriesArray) // countriesIds seria countriesArray
+        
+        res.json({created:created,activity})
     } catch (err) {
         next(err);
     }

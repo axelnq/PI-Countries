@@ -5,13 +5,13 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('country', {
     id:{
-      type: DataTypes.STRING,
-      validate: {
+      type: DataTypes.STRING(3),
+      /*validate: {
         is: /^[a-zA-Z]{3}$/i,
-        // is: ["^[a-zA-Z]{3}$",'i'] regex string form
-      },
+      }*/
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      unique:true,
     },
     name:{
       type: DataTypes.STRING,
@@ -28,13 +28,12 @@ module.exports = (sequelize) => {
     capital: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: "Without capital"
     },
     subregion: {
       type: DataTypes.STRING,
     },
     area: {
-      type: DataTypes.INTEGER
+      type: DataTypes.FLOAT
     },
     population: {
       type: DataTypes.INTEGER

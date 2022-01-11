@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
         }
     },
     duration: {
-        type : DataTypes.INTEGER
+        type : DataTypes.STRING // We can save "120 minutes"  or "2 hours" in string
     },
     season: {
         type: DataTypes.ENUM('Summer', 'Spring', 'Fall', 'Winter')
