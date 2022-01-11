@@ -92,25 +92,9 @@ router.get('/', async (req, res, next) => {
 })
 
 router.get('/:idPais',  async (req, res, next) => {
-    /* 
-    Subregión
-    Área (Mostrarla en km2 o millones de km2)
-    Actividades turísticas con toda su información asociada
-    */
+  
     const {idPais} = req.params;
-    /*
-    const countryDb = await Country.findOne({
-        where: {id: idPais},
-        include: Touristactivity
-    })
-    */
-
-    /* COUNTRYDB TRAE : 
-    - Los campos mostrados en la ruta principal para cada país (imagen de la bandera, nombre, código de país de 3 letras y continente)
-     - Código de país de 3 letras (id)
-     Capital
-    */
-
+    
      /*
     const countryDetailApi = await getApiInfoDetail(idPais);
     
