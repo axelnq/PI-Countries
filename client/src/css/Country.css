@@ -1,17 +1,30 @@
 .countryCard {
     border: 1px solid #57A;
     width:350px;
-    height:250px;
+    height:360px;
     margin-top:20px;
+}
+
+.countryCard:hover {
+    border: 5px double #248CD1;
+    border-radius: 14px;
 }
 
 .countryCard a {
     text-decoration: none;
 }
+.countryInfo {
+   height:82px;
+}
+
+.countryCard h2 {
+    color:white;
+    margin:0 2px;
+    line-height: 1;
+}
 .countryCard h3 {
     color:white;
-    margin:5px;
-    height:50px;
+    line-height: 0.4;
 }
 
 .countryCard img {

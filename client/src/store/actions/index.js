@@ -53,10 +53,10 @@ export function sort(order) {
     }
 }
 
-export function filterCountries(continent) {
+export function filterCountries(filter) {
     return {
         type: FILTER,
-        payload:continent
+        payload:filter
     }
 }
 /*

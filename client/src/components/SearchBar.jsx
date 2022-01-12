@@ -4,12 +4,12 @@ import { searchCountry, fetchCountries } from '../store/actions'
 
 
 export default function SearchBar() {
+
     const [search, setSearch] = useState('');
     const dispatch = useDispatch();
     
-    
 
-    const inputChange = (e) => {
+    const handleInputChange = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
     }
@@ -26,7 +26,7 @@ export default function SearchBar() {
 
     return (
         <div> 
-            <input type="text" placeholder= 'Search country..' onChange={inputChange} 
+            <input type="text" placeholder= 'Search country..' onChange={handleInputChange} 
              value={search}/>
             <button type="submit" onClick={handleSubmit}>Search</button>
             <button onClick={reloadCountries}>Reload all countries</button>

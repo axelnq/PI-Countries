@@ -6,8 +6,17 @@ export default function LandingPage() {
     return (
         <div className="landing">
             <Link to='/home'>
-                <button className="landing-button">ACCESS</button>
+            <button className="landing-button">ACCESS</button>
+            {/* <a href="#">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                Access
+                </a>
+            */}
             </Link>
+            
         </div>
     )
 }

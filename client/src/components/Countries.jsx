@@ -11,32 +11,8 @@ export default function Countries() {
 
     let countries = useSelector((state) => state.countries)
     let dispatch = useDispatch();
-    
-    // Paginado 
     const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(1);
-    const [countriesPerPage, setCountriesPerPage] = useState(10)
-    let lastCountryIndex = countriesPerPage * page; // 18 // 27
-    let firstCountryIndex = lastCountryIndex - countriesPerPage; // 9
    
-    let countriesPage = []
-    
-    if(page === 1) {
-        console.log('firstIndex page 1',firstCountryIndex)
-        console.log('lastIndex page 1',lastCountryIndex)
-        countriesPage = countries.slice(firstCountryIndex,lastCountryIndex-1)
-    } else {
-        console.log(`firstIndex ${firstCountryIndex} ${page}`)
-        console.log(`lastCountryIndex ${lastCountryIndex} ${page}`)
-        countriesPage = countries.slice(firstCountryIndex-1,lastCountryIndex-1);
-    }
-    console.log(countriesPage);
-
-    let paged = (numberPage) =>{
-        setPage(numberPage)
-    }
-
-    // Paginado
     const changeState= () => {
         setLoading(true);
         setTimeout(() =>{
@@ -48,6 +24,32 @@ export default function Countries() {
         changeState();
         dispatch(fetchCountries())
     }, [dispatch])
+
+     // Paginado 
+     
+     const [page, setPage] = useState(1);
+     const [countriesPerPage, setCountriesPerPage] = useState(10)
+     let lastCountryIndex = countriesPerPage * page;
+     let firstCountryIndex = lastCountryIndex - countriesPerPage; 
+    
+     let countriesPage = []
+     
+     if(page === 1) {
+         //console.log('firstIndex page 1',firstCountryIndex)
+         //console.log('lastIndex page 1',lastCountryIndex)
+         countriesPage = countries.slice(firstCountryIndex,lastCountryIndex-1)
+     } else {
+         //console.log(`firstIndex ${firstCountryIndex} ${page}`)
+         //console.log(`lastCountryIndex ${lastCountryIndex} ${page}`)
+         countriesPage = countries.slice(firstCountryIndex-1,lastCountryIndex-1);
+     }
+     
+ 
+     let paged = (numberPage) =>{
+         setPage(numberPage)
+     }
+ 
+     // Paginado
     
     if(loading) {
         return (

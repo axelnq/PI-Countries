@@ -5,32 +5,35 @@ import { sort } from "../store/actions"
 
 
 export default function Order() {
-    const [order, setOrder] = useState('');
-    const [type, setType] = useState('');
+   
     const dispatch = useDispatch();
 
-    const onSelectOrderChange = (e) => {
-        setOrder(e.target.value);
-    }
+    const [select, setSelect] = useState({
+         order: '',
+         type: ''
+    });
 
-    const onSelectTypeChange = (e) => {
-        setType(e.target.value);
+    const handleSelectChange = (e) => {
+        setSelect({
+            ...select,
+            [e.target.name]: e.target.value
+        })
     }
-
+    
     const handleClick = (e) => {
-        let orderAndType = {order,type};
-        dispatch(sort(orderAndType));
+      
+        dispatch(sort(select));
     }
 
     return (
         <div>
-        <select defaultValue="" name="select" onChange={onSelectOrderChange}>
+        <select defaultValue="" name="order" onChange={handleSelectChange}>
             <option value="" disabled hidden>Choose Order</option>
             <option  value={ASCENDING}>Ascending</option>
             <option value={DESCENDING}>Descending</option>
         </select>
 
-        <select defaultValue="" name="select" onChange={onSelectTypeChange}>
+        <select defaultValue="" name="type" onChange={handleSelectChange}>
             <option value="" disabled hidden>Choose Type</option>
             <option  value={ALPHABETIC}>Alphabetic</option>
             <option value={POPULATION}>Population</option>

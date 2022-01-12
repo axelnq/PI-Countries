@@ -19,9 +19,9 @@ export default function reducer (state=initialState, action) {
                 ...state,
                 countries: action.payload
             }
-        case SORT:
+        case SORT: 
             let orderedCountries = [...state.countries]
-            let type = action.payload.type;
+            let type = action.payload.type; 
             let typeOrder = '';
             type && type === ALPHABETIC ? typeOrder = 'name' :  typeOrder = 'population';
             orderedCountries.sort(function (a, b) {
@@ -33,7 +33,7 @@ export default function reducer (state=initialState, action) {
                 }
                 return 0;
             })
-            console.log('array ordenado', orderedCountries)
+            
             return {
                 ...state,
                 countries: orderedCountries
@@ -46,7 +46,7 @@ export default function reducer (state=initialState, action) {
                 return typeFilter === TOURIST_ACTIVITY ? country.touristactivities.some(activity => activity.season === action.payload.value): country.continent === action.payload.value
             }
             )
-            console.log()
+            
             
             return {
                 ...state,
