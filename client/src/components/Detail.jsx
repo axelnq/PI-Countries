@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchCountryDetail } from '../store/actions' 
 // import { useParams } from 'react-router'
 import {Link} from 'react-router-dom';
-import '../css/Detail.css';
+import styles from '../css/Detail.module.css';
 import Loading from './Loading'
 // import axios from 'axios';
 
 export default function Detail({match}) {
 
     let country = useSelector((state) => state.countryDetail)
-    //const [country, setCountry] = useState(null)
-
-    //console.log(country);
+    
     let dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 
@@ -35,10 +33,7 @@ export default function Detail({match}) {
             console.log(country)
         })
         */
-       return () => {
-           
-       }
-        
+      
     }, [dispatch,match.params.id])
 
     if(loading) {
@@ -52,13 +47,13 @@ export default function Detail({match}) {
    
 
     return (
-        <div>
-            <h2>ID: {country.id} - Country: {country.name} | Continent: {country.continent}</h2>
+        <div className={styles.detailCountry}>
+            <h2 >ID: {country.id} - Country: {country.name} | Continent: {country.continent}</h2>
             <img src={country.flagImage} alt={`Flag of ${country.name}`}/>
             <h3>DETALLES:</h3>
             <p>Subregion: {country.subregion}</p>
             <p>Capital: {country.capital}</p>
-            <p>Area: {country.area}</p>
+            <p>Area: {country.area} KM<sup>2</sup></p>
             <p>Population: {country.population}</p>
             <h3>Tourist Activities:</h3>
             {country.touristactivities && country.touristactivities.map(activity => {
@@ -66,7 +61,6 @@ export default function Detail({match}) {
                           <p>Name:{activity.name}, Difficulty: {activity.difficulty} , Duration:{activity.duration}, Season: {activity.season}</p>
                        </div>
             })}
-            {console.log(country.touristactivities)}
             <Link to='/home'><button>BACK HOME</button></Link>
         </div>
     ) 

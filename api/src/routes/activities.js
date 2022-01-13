@@ -34,7 +34,7 @@ router.post('/',  async (req, res, next) => {
            
         })
         
-        await activity.setCountries(countriesArray) 
+        await activity.addCountries(countriesArray) 
        
         res.json({created:created,activity})
 

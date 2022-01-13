@@ -5,7 +5,8 @@ import { fetchCountries } from '../store/actions'
 import Country from './Country'
 import Loading from './Loading'
 import Paged from './Paged'
-import '../css/Countries.css'
+
+import styles from '../css/Countries.module.css';
 
 export default function Countries() {
 
@@ -29,7 +30,7 @@ export default function Countries() {
      // Paginado 
      
      const [page, setPage] = useState(1);
-     const [countriesPerPage, setCountriesPerPage] = useState(10)
+     const countriesPerPage = 10;
      let lastCountryIndex = countriesPerPage * page;
      let firstCountryIndex = lastCountryIndex - countriesPerPage; 
     
@@ -63,8 +64,8 @@ export default function Countries() {
     return (
         
         <div>
-            <Paged countriesPerPage={countriesPerPage} allCountries={countries.length} paged={paged}/>
-            <div className="countriesContainer">
+            <Paged page={page}countriesPerPage={countriesPerPage} allCountries={countries.length} paged={paged}/>
+            <div className={styles.countriesContainer}>
             {countriesPage && countriesPage.map((country) => {
                 return <Country key={country.id} id={country.id} name={country.name} image={country.flagImage} continent={country.continent}/>
             }) }

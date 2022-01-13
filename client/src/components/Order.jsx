@@ -2,6 +2,7 @@ import { ASCENDING, DESCENDING, ALPHABETIC, POPULATION} from "../constantes/Orde
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { sort } from "../store/actions"
+import styles from '../css/Order.module.css';
 
 
 export default function Order() {
@@ -26,7 +27,7 @@ export default function Order() {
     }
 
     return (
-        <div>
+        <div className={styles.orderContainer}>
         <select defaultValue="" name="order" onChange={handleSelectChange}>
             <option value="" disabled hidden>Choose Order</option>
             <option  value={ASCENDING}>Ascending</option>

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/Paged.css';
 
-export default function Paged({countriesPerPage, allCountries, paged}) {
+export default function Paged({page,countriesPerPage, allCountries, paged}) {
 
     const pageNumbers = [];
     // Al ser 250 paises y el PI requerir que en la primera pagina solo se vean 9 , sobra un pais , entonces sumamos 1 pagina
@@ -14,7 +14,9 @@ export default function Paged({countriesPerPage, allCountries, paged}) {
     return (
         <ul className="pages">
              { pageNumbers && pageNumbers.map(pageNumber =>{
-        return <li  key={pageNumber}><button onClick={() => paged(pageNumber)}>{pageNumber}</button></li>
+                    return <li  key={pageNumber}><button onClick={() => paged(pageNumber)}>{pageNumber}</button></li>
+                
+       
      })}
 
         </ul>

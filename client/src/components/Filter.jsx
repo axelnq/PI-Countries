@@ -2,6 +2,8 @@ import React, { useState, useRef  } from 'react';
 // import { CONTINENT, TOURIST_ACTIVITY } from "../constantes/Order"
 import { useDispatch } from 'react-redux'
 import { filterCountriesContinent, filterCountriesActivities, resetFilters} from '../store/actions'
+import styles from '../css/Filter.module.css';
+
 
 
 export default function Filter() {
@@ -12,22 +14,26 @@ export default function Filter() {
  
     const handleClick = (e) => {
         dispatch(resetFilters());
-        selectRefC.current.value = "";
-        selectRefS.current.value = "";
+        /*
+        selectRefC.current.value = ""
+        selectRefS.current.value = ""
+       */
     }
     
    
     const handleContinentFilter = (e) => {
         dispatch(filterCountriesContinent(e.target.value));
+        // e.target.value = ""
 
     }
     
     const handleSeasonFilter = (e) => {
         dispatch(filterCountriesActivities(e.target.value));
+        // e.target.value = ""
     }
   
     return (
-        <div>
+        <div clasName={styles.filterContainer}>
             <select ref={selectRefC} defaultValue="" name="continent" onChange={handleContinentFilter}>
                 <option value="" disabled hidden>Choose Continent</option>
                 <option value="All">All</option>

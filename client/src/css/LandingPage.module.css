@@ -37,7 +37,7 @@ a {
 
 }
 */
-.landing-button {
+.landingButton {
  
   align-items: center;
   appearance: none;
@@ -72,22 +72,22 @@ a {
 }
 
 
-.landing-button:focus {
+.landingButton:focus {
   box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
 }
 
-.landing-button:hover {
+.landingButton:hover {
   box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
   background-image: radial-gradient(100% 100% at 100% 0, #f1f1f1 0, #263ad6 100%);
   transform: translateY(-2px);
 }
 
-.landing-button:active {
+.landingButton:active {
   box-shadow: #3c4fe0 0 3px 7px inset;
   transform: translateY(2px);
 }
 
-.landing-button::before{
+.landingButton::before{
     content: "";
     background-image: conic-gradient(
         #fff 150deg,
@@ -98,7 +98,7 @@ a {
     position: absolute;
     animation: rotate 2s linear infinite;
 }
-.landing-button::after{
+.landingButton::after{
     content: "Access";
     width: 390px;
     height: 190px;

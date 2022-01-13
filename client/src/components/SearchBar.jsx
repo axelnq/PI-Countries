@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { searchCountry, fetchCountries } from '../store/actions'
+import styles from '../css/SearchBar.module.css';
 
 
 export default function SearchBar() {
@@ -25,7 +26,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div> 
+        <div className={styles.searchBarContainer}> 
             <input type="text" placeholder= 'Search country..' onChange={handleInputChange} 
              value={search}/>
             <button type="submit" onClick={handleSubmit}>Search</button>
