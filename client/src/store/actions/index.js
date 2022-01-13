@@ -3,7 +3,10 @@ export const FETCH_COUNTRIES = 'FETCH_COUNTRIES';
 export const SEARCH_COUNTRY = 'SEARCH_COUNTRY';
 export const SORT = 'SORT';
 export const FILTER = 'FILTER';
+export const FILTER_CONTINENT = 'FILTER_CONTINENT';
+export const FILTER_SEASON_ACTIVITY = 'FILTER_SEASON_ACTIVITY';
 export const FETCH_COUNTRY_DETAIL = 'FETCH_COUNTRY_DETAIL';
+export const RESET = 'RESET';
 
 
 export  function fetchCountries() {
@@ -53,12 +56,21 @@ export function sort(order) {
     }
 }
 
-export function filterCountries(filter) {
+export function filterCountriesContinent(filter) {
     return {
-        type: FILTER,
+        type: FILTER_CONTINENT,
         payload:filter
     }
 }
+
+export function filterCountriesActivities(filter) {
+    return {
+        type: FILTER_SEASON_ACTIVITY,
+        payload:filter
+    }
+}
+
+
 /*
 export function fetchCountry(name) {
     return async function(dispatch) {
@@ -95,5 +107,18 @@ export function postActivity(activity) {
         const response = await axios.post('http://localhost:3001/api/activity/',activity);
 
         return response.data;
+    }
+}
+
+export function filterCountries(filter) {
+    return {
+        type: FILTER,
+        payload:filter
+    }
+}
+
+export function resetFilters() {
+    return {
+        type:RESET
     }
 }

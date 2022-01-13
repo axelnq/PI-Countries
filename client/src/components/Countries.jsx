@@ -25,6 +25,7 @@ export default function Countries() {
         dispatch(fetchCountries())
     }, [dispatch])
 
+
      // Paginado 
      
      const [page, setPage] = useState(1);
