@@ -6,6 +6,7 @@ import styles from '../css/Filter.module.css';
 
 
 
+
 export default function Filter() {
 
     const selectRefC = useRef(null);
@@ -33,7 +34,7 @@ export default function Filter() {
     }
   
     return (
-        <div clasName={styles.filterContainer}>
+        <div className={styles.filterContainer}>
             <select ref={selectRefC} defaultValue="" name="continent" onChange={handleContinentFilter}>
                 <option value="" disabled hidden>Choose Continent</option>
                 <option value="All">All</option>

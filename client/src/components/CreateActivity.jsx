@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { postActivity, fetchCountries} from '../store/actions' 
 import {Link} from 'react-router-dom';
-import '../css/CreateActivity.css';
-import axios from 'axios'
+
+import styles from '../css/CreateActivity.module.css';
+
 
 function validate(input){
     let errors = {};
@@ -127,28 +128,28 @@ export default function CreateActivity() {
                 <div>
                     <label>Name</label>
                     
-                    <input className={error.name && 'danger'} type="text" name="name" value={activity.name} onChange={handleChange}/>
+                    <input className={error.name && styles.danger} type="text" name="name" value={activity.name} onChange={handleChange}/>
                     {error.name && (
-                        <span className="danger">{error.name}</span>
+                        <span className={styles.danger}>{error.name}</span>
                     )}
                 </div>
                 <div>
                     <label>Difficulty</label>
-                    <input className={error.difficulty && 'danger'} type="range" min="1" max="5" name="difficulty" value={activity.difficulty} onChange={handleChange}/><span>{activity.difficulty}</span>
+                    <input className={error.difficulty && styles.danger} type="range" min="1" max="5" name="difficulty" value={activity.difficulty} onChange={handleChange}/><span>{activity.difficulty}</span>
                     {error.difficulty && (
-                        <span className="danger">{error.difficulty}</span>
+                        <span className={styles.danger}>{error.difficulty}</span>
                     )}
                 </div>
                 <div>
                     <label>Duration</label>
-                    <input className={error.duration && 'danger'} type="text" name="duration" value={activity.duration} onChange={handleChange}/>
+                    <input className={error.duration && styles.danger} type="text" name="duration" value={activity.duration} onChange={handleChange}/>
                     {error.duration && (
-                        <span className="danger">{error.duration}</span>
+                        <span className={styles.danger}>{error.duration}</span>
                     )}
                     
                 </div>
                 <div>
-                    <label className={error.season && 'danger'}>Season</label>
+                    <label className={error.season && styles.danger}>Season</label>
                     <br/>
                     
                     <label><input  type="radio" name="season" value="Summer" onChange={handleCheck}/>Summer</label>
@@ -156,7 +157,7 @@ export default function CreateActivity() {
                     <label><input  type="radio" name="season" value="Fall" onChange={handleCheck}/>Fall</label>
                     <label><input type="radio" name="season" value="Winter" onChange={handleCheck}/>Winter</label>
                     {error.season && (
-                        <span className="danger">{error.season}</span>
+                        <span className={styles.danger}>{error.season}</span>
                     )}
                     
                 </div>
@@ -170,11 +171,11 @@ export default function CreateActivity() {
                     })}
                 </select>
                 
-                <ul className={error.countriesArray && 'danger'}>{activity.countriesArray && activity.countriesArray.map((country,index) => {
+                <ul className={error.countriesArray && styles.danger}>{activity.countriesArray && activity.countriesArray.map((country,index) => {
                     return <li key={index}>{country}</li>
                 })}</ul>
                 {error.countriesArray && (
-                        <span className="danger">{error.countriesArray}</span>
+                        <span className={styles.danger}>{error.countriesArray}</span>
                     )}
                 </div>
               

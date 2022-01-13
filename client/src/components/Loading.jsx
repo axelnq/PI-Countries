@@ -1,10 +1,11 @@
 import React from 'react';
-import '../css/Loading.css';
+
+import styles from '../css/Loading.module.css';
 
 
 export default function Loading(){
     return(
-        <div>
+        <div className={styles.loadingContainer}>
             <h1>Loading...</h1>
             <img src="https://acegif.com/wp-content/gifs/globe-13.gif"/>
         </div>

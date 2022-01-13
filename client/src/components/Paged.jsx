@@ -1,5 +1,7 @@
 import React from 'react';
-import '../css/Paged.css';
+
+import styles from '../css/Paged.module.css';
+
 
 export default function Paged({page,countriesPerPage, allCountries, paged}) {
 
@@ -12,7 +14,7 @@ export default function Paged({page,countriesPerPage, allCountries, paged}) {
   
 
     return (
-        <ul className="pages">
+        <ul className={styles.pages}>
              { pageNumbers && pageNumbers.map(pageNumber =>{
                     return <li  key={pageNumber}><button onClick={() => paged(pageNumber)}>{pageNumber}</button></li>
                 
