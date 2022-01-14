@@ -8,14 +8,17 @@ import styles from '../css/CreateActivity.module.css';
 
 function validate(input){
     let errors = {};
+    let array = ["Winter", "Spring", "Summer", "Fall"];
 
     if(!input.name) {
         errors.name = 'Name is required';
     }
-
-    if(input.difficulty < 1 || input.difficulty > 5) {
+    if(!input.difficulty){
+        errors.difficulty = 'Difficulty is required';
+    } else if(input.difficulty < 1 || input.difficulty > 5) {
         errors.difficulty = 'Difficulty must be between 1 and 5';
     }
+    
 
     if(!input.duration) {
         errors.duration = 'Duration is required';
@@ -25,6 +28,8 @@ function validate(input){
    
     if(!input.season) {
         errors.season = 'Select a season is required';
+    } else if(!(array.includes(input.season))){
+        errors.season = 'Not a valid season';
     }
 
     if(!(input.countriesArray.length > 0)) {
@@ -45,7 +50,7 @@ export default function CreateActivity() {
         difficulty:"",
         duration:"",
         season:"",
-        countriesArray:[]
+        countriesArray:""
     })
 
     const [error, setError] = useState({});
@@ -59,7 +64,7 @@ export default function CreateActivity() {
 
     useEffect(() => {
         dispatch(fetchCountries())
-    },[])
+    },[dispatch])
     
   
     let validateForm = (errors) => {
@@ -83,39 +88,45 @@ export default function CreateActivity() {
     }
     
     let handleCheck = (e) => {
+
         validateForm(validate({...activity,[e.target.name]:e.target.value}));
+
         if(e.target.checked) {
-        
-            
-            setActivity({
-                ...activity,
-                [e.target.name]: e.target.value
-            })
+            setActivity({...activity,[e.target.name]: e.target.value})
         }
 
     }
 
     let handleSelect = (e) => {
+        console.log(e.target.name)
+        validateForm(validate({...activity,
+            countriesArray: [...activity.countriesArray, e.target.value]}));
+
+        setActivity({...activity,countriesArray: [...activity.countriesArray, e.target.value]})
         
-        validateForm(validate({...activity,countriesArray: [...activity.countriesArray, e.target.value]}));
-        setActivity({
-            ...activity,
-            countriesArray: [...activity.countriesArray, e.target.value]
-        })
     }
 
-    let  handleSubmit =  (e) => {
+    let handleSubmit =  (e) => {
+
         e.preventDefault();
        
-        dispatch(postActivity(activity));
-        setActivity({
-            name:"",
-            difficulty:"",
-            duration:"",
-            season:"",
-            countriesArray:""
-        })
+        if(Object.keys(error).length === 0){
+            dispatch(postActivity(activity));
+            setActivity({
+                name:"",
+                difficulty:"",
+                duration:"",
+                season:"",
+                countriesArray:""
+            })
+            setDisabled(true);
+
         alert("Successfully created activity");
+        } else {
+            for(let keys in error){
+                alert("Error: " + error[keys])
+            }
+        }
         
         
     }
@@ -164,10 +175,10 @@ export default function CreateActivity() {
                 
                
                 <div>
-                <select defaultValue="" onChange={handleSelect}>
-                <option value=""disabled hidden>Choose Country</option>
+                <select value={activity.countriesArray}  onChange={handleSelect}>
+                <option value="" disabled hidden>Choose Country</option>
                     {countries && countries.map((country) =>{
-                        return <option key={country.id}value={country.id}>{country.name}</option>
+                        return <option key={country.id} name={country.flagImage}value={country.id} flag={country.flagImage}>{country.name}</option>
                     })}
                 </select>
                 

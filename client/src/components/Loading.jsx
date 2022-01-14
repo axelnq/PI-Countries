@@ -7,7 +7,7 @@ export default function Loading(){
     return(
         <div className={styles.loadingContainer}>
             <h1>Loading...</h1>
-            <img src="https://acegif.com/wp-content/gifs/globe-13.gif"/>
+            <img alt="Loading" src="https://acegif.com/wp-content/gifs/globe-13.gif"/>
         </div>
     )
 }

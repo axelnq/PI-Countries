@@ -1,4 +1,4 @@
-import React, { useState, useRef  } from 'react';
+import React, { useState } from 'react';
 // import { CONTINENT, TOURIST_ACTIVITY } from "../constantes/Order"
 import { useDispatch } from 'react-redux'
 import { filterCountriesContinent, filterCountriesActivities, resetFilters} from '../store/actions'
@@ -9,33 +9,44 @@ import styles from '../css/Filter.module.css';
 
 export default function Filter() {
 
-    const selectRefC = useRef(null);
-    const selectRefS= useRef(null);
     const dispatch = useDispatch();
+    const [select , setSelect] = useState({
+        continent:"",
+        season:""
+    })
  
     const handleClick = (e) => {
         dispatch(resetFilters());
-        /*
-        selectRefC.current.value = ""
-        selectRefS.current.value = ""
-       */
+        setSelect({
+            continent:"",
+            season:""
+        })
     }
     
    
+    const handleSelects = (e) => {
+        setSelect({...select,[e.target.name]:e.target.value})
+        if(e.target.name === "continent") {
+           dispatch(filterCountriesContinent(e.target.value));
+        } else {
+           dispatch(filterCountriesActivities(e.target.value));
+        }
+    }
+    /*
     const handleContinentFilter = (e) => {
+        setSelect({...select,[e.target.name]:e.target.value})
         dispatch(filterCountriesContinent(e.target.value));
-        // e.target.value = ""
-
     }
     
     const handleSeasonFilter = (e) => {
+        setSelect({...select,[e.target.name]:e.target.value})
         dispatch(filterCountriesActivities(e.target.value));
-        // e.target.value = ""
     }
+    */
   
     return (
         <div className={styles.filterContainer}>
-            <select ref={selectRefC} defaultValue="" name="continent" onChange={handleContinentFilter}>
+            <select value={select.continent} defaultValue="" name="continent" onChange={handleSelects}>
                 <option value="" disabled hidden>Choose Continent</option>
                 <option value="All">All</option>
                 <option value="Antarctic">Antarctic</option>
@@ -45,7 +56,7 @@ export default function Filter() {
                 <option value="Europe">Europe</option>
                 <option value="Oceania">Oceania</option>
             </select>
-            <select ref={selectRefS} defaultValue="" name="season" onChange={handleSeasonFilter}>
+            <select value={select.season}defaultValue="" name="season" onChange={handleSelects}>
                 <option value="" disabled hidden>Choose type of activity</option>
                 <option value="All">All</option>
                 <option value="Summer">Summer</option>

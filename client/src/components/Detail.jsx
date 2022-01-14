@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchCountryDetail } from '../store/actions' 
-// import { useParams } from 'react-router'
 import {Link} from 'react-router-dom';
 import styles from '../css/Detail.module.css';
 import Loading from './Loading'
-// import axios from 'axios';
 
 export default function Detail({match}) {
 
     let country = useSelector((state) => state.countryDetail)
-    
     let dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-
+    
     const changeState= () => {
+
         setLoading(true);
         setTimeout(() =>{
             setLoading(false);
@@ -22,18 +20,10 @@ export default function Detail({match}) {
     }
 
     useEffect(() => {
+
         changeState();
-    
         dispatch(fetchCountryDetail(match.params.id))
-      
-        /*
-        axios.get('http://localhost:3001/api/countries/' + match.params.id)
-        .then((response) => {
-            setCountry(response.data)
-            console.log(country)
-        })
-        */
-      
+
     }, [dispatch,match.params.id])
 
     if(loading) {
@@ -44,7 +34,7 @@ export default function Detail({match}) {
         )
     } else {
 
-   
+        
 
     return (
         <div className={styles.detailCountry}>

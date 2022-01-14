@@ -1,5 +1,5 @@
-import { FETCH_COUNTRIES, SEARCH_COUNTRY, SORT,FILTER, FILTER_CONTINENT, FILTER_SEASON_ACTIVITY, FETCH_COUNTRY_DETAIL, RESET} from '../actions';
-import { ASCENDING, DESCENDING, ALPHABETIC, POPULATION, CONTINENT, TOURIST_ACTIVITY} from "../../constantes/Order"
+import { FETCH_COUNTRIES, SEARCH_COUNTRY, SORT,FILTER_CONTINENT, FILTER_SEASON_ACTIVITY, FETCH_COUNTRY_DETAIL, RESET} from '../actions';
+import { ASCENDING,  ALPHABETIC } from "../../constantes/Order"
 
 const initialState = {
     countries: [],
@@ -109,7 +109,8 @@ export default function reducer (state=initialState, action) {
             return {
                 ...state,
                 filteredCountriesContinent: [],
-                filteredCountriesSeason: []
+                filteredCountriesSeason: [],
+                countries: state.allCountries
             }
         default:
             return state;
