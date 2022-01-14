@@ -1,3 +1,23 @@
 .detailCountry {
-    color:#FFF;
+    color:rgb(231, 134, 134);
+}
+
+.detailCountry img {
+    height:350px;
+    width:600px;
+}
+
+.activityContainer {
+    display:flex;
+    justify-content:center;
+    margin-bottom: 10px;
+}
+.activity {
+    border: 1px solid rgb(231, 134, 134);
+    width:200px;
+    height:180px;
+}
+.activity p {
+    font-size:17px;
+    color:rgb(231, 134, 134);
 }

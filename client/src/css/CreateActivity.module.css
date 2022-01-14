@@ -14,3 +14,55 @@ input.danger {
 div.danger {
     border: 2px solid red;
 }
+ul.danger {
+    border: 2px solid red;
+}
+
+.formActivity {
+    background-color:rgba(80, 88, 131, 0.75);
+    width:550px;
+    height: 350px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    margin: 10px auto;
+    border: 1px solid #fff;
+}
+
+.nameField, .difficultyField, .durationField, .seasonField {
+    display: flex;
+    height:45px;
+    border: 1px solid #fff;
+    align-items:center;
+    justify-content:center;
+}
+.nameField label, .difficultyField label, .durationField label, .seasonField label {
+    margin:5px;
+    
+}
+
+.nameField input,.difficultyField input, .durationField input {
+    width: 60%;
+}
+
+
+
+
+
+.listForm {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap:50px;
+    list-style: none;
+}
+.listImage {
+    width:350px;
+    height:303px;
+  
+}
+
+.listImage img {
+    width:100%;
+    height:240px
+}

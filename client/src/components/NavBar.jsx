@@ -11,7 +11,7 @@ export default function NavBar() {
             <SearchBar/>   
             <Order/>
             <Filter/>
-            <Link to='/createActivity'><button>Create Activity</button></Link>
+            <Link to='/createActivity'><button className={styles.createButton}>Create Activity</button></Link>
         </div>
     )
 }

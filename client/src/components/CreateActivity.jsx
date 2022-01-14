@@ -98,7 +98,7 @@ export default function CreateActivity() {
     }
 
     let handleSelect = (e) => {
-        console.log(e.target.name)
+       
         validateForm(validate({...activity,
             countriesArray: [...activity.countriesArray, e.target.value]}));
 
@@ -135,8 +135,8 @@ export default function CreateActivity() {
         <div>
             <div>CREATE ACTIVITY</div>
 
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form className={styles.formActivity}onSubmit={handleSubmit}>
+                <div className={styles.nameField}>
                     <label>Name</label>
                     
                     <input className={error.name && styles.danger} type="text" name="name" value={activity.name} onChange={handleChange}/>
@@ -144,14 +144,14 @@ export default function CreateActivity() {
                         <span className={styles.danger}>{error.name}</span>
                     )}
                 </div>
-                <div>
+                <div className={styles.difficultyField}>
                     <label>Difficulty</label>
                     <input className={error.difficulty && styles.danger} type="range" min="1" max="5" name="difficulty" value={activity.difficulty} onChange={handleChange}/><span>{activity.difficulty}</span>
                     {error.difficulty && (
                         <span className={styles.danger}>{error.difficulty}</span>
                     )}
                 </div>
-                <div>
+                <div className={styles.durationField}>
                     <label>Duration</label>
                     <input className={error.duration && styles.danger} type="text" name="duration" value={activity.duration} onChange={handleChange}/>
                     {error.duration && (
@@ -159,14 +159,14 @@ export default function CreateActivity() {
                     )}
                     
                 </div>
-                <div>
+                <div className={styles.seasonField}>
                     <label className={error.season && styles.danger}>Season</label>
                     <br/>
                     
-                    <label><input  type="radio" name="season" value="Summer" onChange={handleCheck}/>Summer</label>
-                    <label><input  type="radio" name="season" value="Spring" onChange={handleCheck}/>Spring</label>
-                    <label><input  type="radio" name="season" value="Fall" onChange={handleCheck}/>Fall</label>
-                    <label><input type="radio" name="season" value="Winter" onChange={handleCheck}/>Winter</label>
+                    <label>Summer<input  type="radio" name="season" value="Summer" onChange={handleCheck}/></label>
+                    <label>Spring<input  type="radio" name="season" value="Spring" onChange={handleCheck}/></label>
+                    <label>Fall<input  type="radio" name="season" value="Fall" onChange={handleCheck}/></label>
+                    <label>Winter<input type="radio" name="season" value="Winter" onChange={handleCheck}/></label>
                     {error.season && (
                         <span className={styles.danger}>{error.season}</span>
                     )}
@@ -174,28 +174,33 @@ export default function CreateActivity() {
                 </div>
                 
                
-                <div>
-                <select value={activity.countriesArray}  onChange={handleSelect}>
-                <option value="" disabled hidden>Choose Country</option>
-                    {countries && countries.map((country) =>{
-                        return <option key={country.id} name={country.flagImage}value={country.id} flag={country.flagImage}>{country.name}</option>
+                <div className={styles.countriesField}>
+                    <select value={activity.countriesArray}  onChange={handleSelect}>
+                        <option value="" disabled hidden>Choose Country</option>
+                        {countries && countries.map((country) =>{
+                        
+                        return <option key={country.id} value={country.id}>{country.name}</ option>
                     })}
-                </select>
+                    </select>
                 
-                <ul className={error.countriesArray && styles.danger}>{activity.countriesArray && activity.countriesArray.map((country,index) => {
-                    return <li key={index}>{country}</li>
-                })}</ul>
-                {error.countriesArray && (
-                        <span className={styles.danger}>{error.countriesArray}</span>
-                    )}
+                   
                 </div>
               
-                <br/>
-                {disabled ? null : <input  type="submit" value="CREATE"/>}
                 
-                
+                {disabled ? null : <input className={styles.inputForm} type="submit" value="CREATE"/>}
                 
             </form>
+            <ul className={styles.listForm}>{activity.countriesArray && activity.   countriesArray.map((country,index) => {
+                       let countryFind = countries.find(c => c.id === country);
+                      
+                    return <li className={styles.listImage} key={index}>
+                                <h3>{countryFind.name}</h3>
+                                <img src={countryFind.flagImage} alt={`${country}`}></img>
+                           </li>
+                    })}</ul>
+                    {error.countriesArray && (
+                        <span className={styles.danger}>{error.countriesArray}</span>
+                    )}
 
             <Link to='/home'><button>BACK HOME</button></Link>
         </div>

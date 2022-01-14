@@ -46,7 +46,7 @@ export default function Filter() {
   
     return (
         <div className={styles.filterContainer}>
-            <select value={select.continent} defaultValue="" name="continent" onChange={handleSelects}>
+            <select value={select.continent}  name="continent" onChange={handleSelects}>
                 <option value="" disabled hidden>Choose Continent</option>
                 <option value="All">All</option>
                 <option value="Antarctic">Antarctic</option>
@@ -56,7 +56,7 @@ export default function Filter() {
                 <option value="Europe">Europe</option>
                 <option value="Oceania">Oceania</option>
             </select>
-            <select value={select.season}defaultValue="" name="season" onChange={handleSelects}>
+            <select value={select.season} name="season" onChange={handleSelects}>
                 <option value="" disabled hidden>Choose type of activity</option>
                 <option value="All">All</option>
                 <option value="Summer">Summer</option>

@@ -46,11 +46,16 @@ export default function Detail({match}) {
             <p>Area: {country.area} KM<sup>2</sup></p>
             <p>Population: {country.population}</p>
             <h3>Tourist Activities:</h3>
+            <div className={styles.activityContainer}>
             {country.touristactivities && country.touristactivities.map(activity => {
-                return <div key={activity.id}>
-                          <p>Name:{activity.name}, Difficulty: {activity.difficulty} , Duration:{activity.duration}, Season: {activity.season}</p>
+                return <div className={styles.activity} key={activity.id}>
+                          <p>Name:{activity.name}</p>
+                          <p>Difficulty: {activity.difficulty}</p>
+                          <p>Duration:{activity.duration},</p>
+                          <p>Season: {activity.season}</p>
                        </div>
             })}
+            </div>
             <Link to='/home'><button>BACK HOME</button></Link>
         </div>
     ) 
