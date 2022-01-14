@@ -22,7 +22,6 @@ export default function Order() {
     }
     
     const handleClick = (e) => {
-      
         dispatch(sort(select));
     }
 

@@ -6,9 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define('country', {
     id:{
       type: DataTypes.STRING(3),
-      /*validate: {
-        is: /^[a-zA-Z]{3}$/i,
-      }*/
       allowNull: false,
       primaryKey: true,
       unique:true,

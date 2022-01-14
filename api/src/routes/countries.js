@@ -11,8 +11,9 @@ const db = require('../db');
 const router = Router();
 
 const getApiInfo = async () => {
+
     const apiUrl = await axios.get('https://restcountries.com/v3/all');
-    
+
     const countriesApi = await apiUrl.data.map(country => {
         let capital = "";
         country.capital ? capital = country.capital[0] : capital = "Without capital"
@@ -29,8 +30,8 @@ const getApiInfo = async () => {
 }
 
 const getApiInfoDetail = async (id) => {
+
     const apiCountryDetail = await axios.get('https://restcountries.com/v3/alpha/' + id);
-    // const countriesApiDetail = await apiUrl.data.find(country => id === country.cca3)
     
     let country = apiCountryDetail.data[0]
     let capital = "";
@@ -48,17 +49,16 @@ const getApiInfoDetail = async (id) => {
 }
 
 router.get('/', async (req, res, next) => {
-    /*Imagen de la bandera ,Nombre , Continente ,cantidad de població */
 
     const {name} = req.query;
 
 
     try {
-        // Si tengo la db con info no hago nada
+        // If I have the db with info , don't do anything
         var dbCountries = await Country.findAll({
             include:Touristactivity
         });
-        // Si no tengo datos los creo
+        // If it is empty , create the countries with the api info
         if(!dbCountries.length) {
             const apiCountries = await getApiInfo();
             await Country.bulkCreate(apiCountries);
@@ -71,8 +71,7 @@ router.get('/', async (req, res, next) => {
     }
 
     if(!name) return res.status(200).json(dbCountries);
-    //
-
+    
     try {
         let country = await Country.findAll({
             where: { 
@@ -82,7 +81,7 @@ router.get('/', async (req, res, next) => {
             }
         })
         
-        if(Object.keys(country).length === 0) return res.status(400).send({message: "This country doesn't exist."})
+        if(Object.keys(country).length === 0) return res.status(404).send({message: "This country doesn't exist."})
 
         return res.status(200).json(country);
     } catch (error) {
@@ -95,41 +94,21 @@ router.get('/:idPais',  async (req, res, next) => {
   
     const {idPais} = req.params;
     
-     /*
-    const countryDetailApi = await getApiInfoDetail(idPais);
-    
-    countryDb['subregion'] = countryDetailApi.subregion;
-    countryDb['area'] = countryDetailApi.area;
-    */
     try {
-    const country = await getApiInfoDetail(idPais);
-    const countryDb = await Country.findOne({
-        where: {id: idPais},
-        include: Touristactivity,
-    })
-
-    country['touristactivities'] = countryDb.touristactivities;
-    
-    res.send(country);
+        const country = await getApiInfoDetail(idPais);
+        const countryDb = await Country.findOne({
+            where: {id: idPais},
+            include: Touristactivity,
+        })
+   
+        countryDb.touristactivities ? country['touristactivities'] = countryDb.touristactivities : null;
+       
+        return res.status(200).send(country);
     } catch(error) {
+        error.message = "The ID doen't exist"
         next(error);
     }
+
 })
-
-/*
-Ruta que usaba para conectar los modelos Country y TouristActivities antes de usar el setCountries en el post activity
-
-router.post('/:countryId/activity/:activityId', async (req, res, next) => {
-    try {
-        const {countryId, activityId} = req.params;
-        const country = await Country.findByPk(countryId);
-        await country.addTouristactivity(activityId);
-        res.sendStatus(200);
-    } catch (err) {
-        next(err);
-    }
-})
-*/
-
 
 module.exports = router;

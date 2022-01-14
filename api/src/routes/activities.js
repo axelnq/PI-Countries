@@ -7,16 +7,16 @@ const router = Router();
 
 
 router.get('/',  async (req, res, next) => {
-    try {
-        // Si tengo la db con info no hago nada
-        var dbActivities = await Touristactivity.findAll(({
-            include:Country
-        }));
 
+    try {
+        var dbActivities = await Touristactivity.findAll({include:Country});
+
+        return res.status(200).send(dbActivities);
     } catch(error) {
         next(error);
     }
-    res.send(dbActivities);
+   
+
 })
 
 router.post('/',  async (req, res, next) => {
@@ -36,11 +36,11 @@ router.post('/',  async (req, res, next) => {
         
         await activity.addCountries(countriesArray) 
        
-        res.json({created:created,activity})
-
+        return res.status(200).send({created:created,activity})
     } catch (err) {
         next(err);
     }
+    
 })
 
 
