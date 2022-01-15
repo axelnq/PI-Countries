@@ -1,3 +1,4 @@
+
 div {
     color: #fff;
 }
@@ -30,17 +31,18 @@ ul.danger {
 	background: #f4f7f8;
 	border-radius: 8px;
 	font-family: Georgia, "Times New Roman", Times, serif;
-  
 }
 
 .formActivity label {
 	display: block;
 	margin-bottom: 8px;
     color:#000;
+    
 }
 
 .difficultyField input {
     width: 90%;
+    
 }
 .spanDiff {
     color:#000;
@@ -67,6 +69,7 @@ ul.danger {
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	margin-bottom: 15px;
+    border:1px dotted rgb(53, 52, 52);
 }
 
 
@@ -99,7 +102,39 @@ ul.danger {
     margin-bottom:15px;
 }
 
-
+.homeButton {
+    margin: 0 auto;
+    display: flex;
+    height: 3em;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eeeeee4b;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    font-size:20px;
+   }
+   
+   .homeButton > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
+   }
+   
+   .homeButton:hover > svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+   }
+   
+   .homeButton:hover {
+   
+    transform: translateY(-2px);
+   }
 
 /*
 

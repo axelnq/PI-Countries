@@ -1,0 +1,20 @@
+/*https://hdwallsource.com/img/2014/8/world-wallpaper-4431-4490-hd-wallpapers.jpg*/
+
+/* background-image: url('https://cdn.wallpapersafari.com/31/94/vgTeUS.jpg');*/
+
+.home {
+    background-image: url('../images/home.jpg');
+    height: 100vh;
+    
+    /* Center and scale the image nicely */
+    background-repeat:no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    background-position:center;
+    background-color: #39289e;
+    
+  }
+  
+  
