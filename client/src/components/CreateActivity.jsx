@@ -146,7 +146,7 @@ export default function CreateActivity() {
                 </div>
                 <div className={styles.difficultyField}>
                     <label>Difficulty</label>
-                    <input className={error.difficulty && styles.danger} type="range" min="1" max="5" name="difficulty" value={activity.difficulty} onChange={handleChange}/><span>{activity.difficulty}</span>
+                    <input className={error.difficulty && styles.danger} type="range" min="1" max="5" name="difficulty" value={activity.difficulty} onChange={handleChange}/><span className={styles.spanDiff}>{activity.difficulty}</span>
                     {error.difficulty && (
                         <span className={styles.danger}>{error.difficulty}</span>
                     )}
@@ -163,16 +163,16 @@ export default function CreateActivity() {
                     <label className={error.season && styles.danger}>Season</label>
                     <br/>
                     
-                    <label>Summer<input  type="radio" name="season" value="Summer" onChange={handleCheck}/></label>
-                    <label>Spring<input  type="radio" name="season" value="Spring" onChange={handleCheck}/></label>
-                    <label>Fall<input  type="radio" name="season" value="Fall" onChange={handleCheck}/></label>
-                    <label>Winter<input type="radio" name="season" value="Winter" onChange={handleCheck}/></label>
-                    {error.season && (
+                    <label>Summer</label><input  type="radio" name="season" value="Summer" onChange={handleCheck}/>
+                    <label>Spring</label><input  type="radio" name="season" value="Spring" onChange={handleCheck}/>
+                    <label>Fall</label><input  type="radio" name="season" value="Fall" onChange={handleCheck}/>
+                    <label>Winter</label><input type="radio" name="season" value="Winter" onChange={handleCheck}/>
+                    
+                </div>
+                {error.season && (
                         <span className={styles.danger}>{error.season}</span>
                     )}
                     
-                </div>
-                
                
                 <div className={styles.countriesField}>
                     <select value={activity.countriesArray}  onChange={handleSelect}>
@@ -185,7 +185,9 @@ export default function CreateActivity() {
                 
                    
                 </div>
-              
+                {error.countriesArray && (
+                        <span className={styles.danger}>{error.countriesArray}</span>
+                    )}
                 
                 {disabled ? null : <input className={styles.inputForm} type="submit" value="CREATE"/>}
                 
@@ -198,9 +200,7 @@ export default function CreateActivity() {
                                 <img src={countryFind.flagImage} alt={`${country}`}></img>
                            </li>
                     })}</ul>
-                    {error.countriesArray && (
-                        <span className={styles.danger}>{error.countriesArray}</span>
-                    )}
+                   
 
             <Link to='/home'><button>BACK HOME</button></Link>
         </div>
