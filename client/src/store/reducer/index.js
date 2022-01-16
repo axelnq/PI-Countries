@@ -50,12 +50,6 @@ export default function reducer (state=initialState, action) {
                 countries: action.payload
             }
         case SORT: 
-            // FIX 
-            // disabled button ANTES DE SELECCIONAR LOS 2
-            // al reves type y order , PRIMERO TYPE (alphabetic) y despues order (descending)
-            // BUTTON PONER SORT 
-            /// RESET SORT 
-            // VER COMO QUEDA TODO SIN EL CHOOSE
 
             let orderedCountries = [...state.countries]
             let type = action.payload.type; 
