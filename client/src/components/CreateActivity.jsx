@@ -9,6 +9,7 @@ import styles from '../css/CreateActivity.module.css';
 function validate(input){
     let errors = {};
     let array = ["Winter", "Spring", "Summer", "Fall"];
+    let durationConditions = ["hours","minutes"]
 
     if(!input.name) {
         errors.name = 'Name is required';
@@ -22,7 +23,10 @@ function validate(input){
 
     if(!input.duration) {
         errors.duration = 'Duration is required';
-    } /*else if (isNaN(input.duration)) {
+    } else if(!(durationConditions.some(el => input.duration.toLowerCase().includes(el)))) {
+        errors.duration = "Especify if the duration is hours or minutes"
+    } 
+    /*else if (isNaN(input.duration)) {
         errors.duration = "Must be a number"
     }*/
    
@@ -98,11 +102,21 @@ export default function CreateActivity() {
     }
 
     let handleSelect = (e) => {
-       
-        validateForm(validate({...activity,
-            countriesArray: [...activity.countriesArray, e.target.value]}));
 
-        setActivity({...activity,countriesArray: [...activity.countriesArray, e.target.value]})
+        if(!activity.countriesArray.includes(e.target.value)){
+            validateForm(validate({...activity,
+                countriesArray: [...activity.countriesArray, e.target.value]}));
+    
+            setActivity({...activity,countriesArray: [...activity.countriesArray, e.target.value]})
+        }
+        
+    }
+
+    let deleteCountry = (id) => {
+        
+        let countriesArrayFilter = activity.countriesArray.filter(countryId => countryId !== id)
+        validateForm(validate({...activity,countriesArray:countriesArrayFilter}))
+        setActivity({...activity,countriesArray:countriesArrayFilter})
         
     }
 
@@ -139,7 +153,7 @@ export default function CreateActivity() {
                 <div className={styles.nameField}>
                     <label>Name</label>
                     
-                    <input className={error.name && styles.danger} type="text" name="name" value={activity.name} onChange={handleChange}/>
+                    <input className={error.name && styles.danger} type="text" name="name" placeholder="Activity name"value={activity.name} onChange={handleChange}/>
                     {error.name && (
                         <span className={styles.danger}>{error.name}</span>
                     )}
@@ -153,7 +167,7 @@ export default function CreateActivity() {
                 </div>
                 <div className={styles.durationField}>
                     <label>Duration</label>
-                    <input className={error.duration && styles.danger} type="text" name="duration" value={activity.duration} onChange={handleChange}/>
+                    <input placeholder="Duration in minutes or hours"className={error.duration && styles.danger} type="text" name="duration" value={activity.duration} onChange={handleChange}/>
                     {error.duration && (
                         <span className={styles.danger}>{error.duration}</span>
                     )}
@@ -176,7 +190,7 @@ export default function CreateActivity() {
                
                 <div className={styles.countriesField}>
                     <select value={activity.countriesArray}  onChange={handleSelect}>
-                        <option value="" disabled hidden>Choose Country</option>
+                        <option value="" disabled hidden>Choose 1 or more countries</option>
                         {countries && countries.map((country) =>{
                         
                         return <option key={country.id} value={country.id}>{country.name}</ option>
@@ -196,7 +210,10 @@ export default function CreateActivity() {
                        let countryFind = countries.find(c => c.id === country);
                       
                     return <li className={styles.listImage} key={index}>
+                                <div>
                                 <h3>{countryFind.name}</h3>
+                                <button onClick={() => deleteCountry(country)}>X</button>
+                                </div>
                                 <img src={countryFind.flagImage} alt={`${country}`}></img>
                            </li>
                     })}</ul>

@@ -9,17 +9,21 @@ const initialState = {
     filteredCountriesContinent: [],
     filteredCountriesSeason: []
 }
-
+/*
 const filterCountries = (state,action,type) => {
+    // BUG DE LOS FILTROS AL REVES
     let otherFilter = []
+    // revisar al reves los filtros 
+    // EL BUG ES CON EL ALL AL APLICAR OTRO FILTRO
     if(type === FILTER_CONTINENT) {
         otherFilter = state.filteredCountriesSeason;
     } else {
         otherFilter = state.filteredCountriesContinent
     }
+    
     let arrayToFilter = [];
     otherFilter.length > 0 ? arrayToFilter = [...otherFilter] : arrayToFilter = [...state.allCountries];
-
+    // solid 
     let resultArray = [];
     action.payload === 'All' ? resultArray = [...state.allCountries] : 
     type === FILTER_CONTINENT ? 
@@ -28,7 +32,7 @@ const filterCountries = (state,action,type) => {
     return resultArray;
 }
 
-    
+*/   
 
 export default function reducer (state=initialState, action) {
     switch (action.type) {
@@ -46,6 +50,13 @@ export default function reducer (state=initialState, action) {
                 countries: action.payload
             }
         case SORT: 
+            // FIX 
+            // disabled button ANTES DE SELECCIONAR LOS 2
+            // al reves type y order , PRIMERO TYPE (alphabetic) y despues order (descending)
+            // BUTTON PONER SORT 
+            /// RESET SORT 
+            // VER COMO QUEDA TODO SIN EL CHOOSE
+
             let orderedCountries = [...state.countries]
             let type = action.payload.type; 
             let typeOrder = '';
@@ -65,15 +76,16 @@ export default function reducer (state=initialState, action) {
                 countries: orderedCountries
             }
         case FILTER_CONTINENT:
-            /*
+            
+           
             let countriesContinent = [];
             state.filteredCountriesSeason.length > 0 ? countriesContinent = [...state.filteredCountriesSeason] : countriesContinent = [...state.allCountries];
 
             let continentFilter = [];
             action.payload === 'All' ? continentFilter = [...state.allCountries] :
             continentFilter = countriesContinent.filter(country => country.continent === action.payload)
-           */
-            let continentFilter = filterCountries(state,action,FILTER_CONTINENT);
+           
+           // let continentFilter = filterCountries(state,action,FILTER_CONTINENT);
             return {
                 
                 ...state,
@@ -82,15 +94,15 @@ export default function reducer (state=initialState, action) {
                 
             }
         case FILTER_SEASON_ACTIVITY:
-            /*
+            
             let countriesSeason = [];
             state.filteredCountriesContinent.length > 0 ? countriesSeason = [...state.filteredCountriesContinent] : countriesSeason = [...state.allCountries]
 
             let seasonFilter = [];
             action.payload === 'All' ? seasonFilter = [...state.allCountries]: seasonFilter = countriesSeason.filter(country => country.touristactivities.some(activity => activity.season === action.payload))
-            */
+           
 
-            let seasonFilter = filterCountries(state,action,FILTER_SEASON_ACTIVITY);
+            // let seasonFilter = filterCountries(state,action,FILTER_SEASON_ACTIVITY);
 
             return {
                 
@@ -116,3 +128,9 @@ export default function reducer (state=initialState, action) {
             return state;
     }
 }
+
+// FIX CSS : https://
+// REDONDEAR TODOS LSO BOTONES Y DEL PAGINADO  , TAMBIEN LA BANDERA DEL DETALLE Y DEL FORM
+
+
+// QUE EL DETALLE LA CARTA CON LA INFO SEA IGUAL A LA DEL HOME PERO MAS GRANDE , PARECIENDO QUE LA CARTA QUE SELECCIONE SE HACE MAS GRANDE 
