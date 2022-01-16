@@ -2,3 +2,8 @@
     display:flex;
     height:50px;
 }
+
+.orderContainer select, .orderContainer button {
+    border-radius:10px;
+    margin:1px;
+}

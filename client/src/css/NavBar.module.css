@@ -12,4 +12,5 @@
 .createButton {
 	height:50px;
 	margin:8px;
+	border-radius:10px;
 }

@@ -27,7 +27,7 @@ export default function Countries() {
     }, [dispatch])
 
 
-     // Paginado 
+     // Paginated 
      
      const [page, setPage] = useState(1);
      const countriesPerPage = 10;
@@ -37,12 +37,8 @@ export default function Countries() {
      let countriesPage = []
      
      if(page === 1) {
-         //console.log('firstIndex page 1',firstCountryIndex)
-         //console.log('lastIndex page 1',lastCountryIndex)
          countriesPage = countries.slice(firstCountryIndex,lastCountryIndex-1)
      } else {
-         //console.log(`firstIndex ${firstCountryIndex} ${page}`)
-         //console.log(`lastCountryIndex ${lastCountryIndex} ${page}`)
          countriesPage = countries.slice(firstCountryIndex-1,lastCountryIndex-1);
      }
      
@@ -51,7 +47,7 @@ export default function Countries() {
          setPage(numberPage)
      }
  
-     // Paginado
+     // Paginated
     
     if(loading) {
         return (
@@ -65,6 +61,7 @@ export default function Countries() {
         
         <div>
             <Paged page={page}countriesPerPage={countriesPerPage} allCountries={countries.length} paged={paged}/>
+
             <div className={styles.countriesContainer}>
             {countriesPage && countriesPage.map((country) => {
                 return <Country key={country.id} id={country.id} name={country.name} image={country.flagImage} continent={country.continent}/>
