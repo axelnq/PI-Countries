@@ -93,6 +93,7 @@ router.get('/:countryID',  async (req, res, next) => {
     const {countryID} = req.params;
     
     try {
+        
         const country = await getApiInfoDetail(countryID)
         
         const countryDb =  await Country.findOne({
@@ -105,8 +106,11 @@ router.get('/:countryID',  async (req, res, next) => {
         return res.status(200).send(country);
         
     } catch(error) {
-        error.message = "The ID doesn't exist"
-        next(error);
+        
+        return res.status(404).send({message: "The ID doesn't exist"})
+       // next(error);
+        
+        
     }
 
 })

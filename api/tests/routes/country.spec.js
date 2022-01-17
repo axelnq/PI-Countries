@@ -60,5 +60,17 @@ describe('Country routes', () => {
         expect(res.body.id).equal("ATF")
       })
     );
+
+    it('Invalid ID', () =>
+      agent.get('/api/countries/Adasdf')
+      .expect(404)
+      .expect(res => {
+        expect(res.body).to.deep.equal({"message":"The ID doesn't exist"})
+      })
+    );
+
+    
+    
+
   });
 });

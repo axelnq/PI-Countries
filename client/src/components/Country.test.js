@@ -11,7 +11,7 @@ import Country from "./Country"
 
 configure({ adapter: new Adapter() });
 
-describe("<HouseCard />", () => {
+describe("<Country/>", () => {
   
   let countryCard, state, store, countries;
   const mockStore = configureStore([thunk]);
@@ -91,12 +91,12 @@ describe("<HouseCard />", () => {
 
   afterEach(() => jest.restoreAllMocks());
 
-  describe("Estructura", () => {
-    it('Debería renderizar una "img"', () => {
+  describe("Structure", () => {
+    it('It should render an "img"', () => {
         expect(countryCard(countries[0]).find("img")).toHaveLength(1);
       });
     
-    it('Debería renderizar un tag "h2" que muestre lo que contiene el "name" de cada "Country"', () => {
+    it('It should render an "h2" tag that shows what the "name" of each "Country"', () => {
       expect(countryCard(countries[0]).find("h2").at(0).text()).toBe("French Southern and Antarctic Lands");
       expect(countryCard(countries[1]).find("h2").at(0).text()).toBe(
         "Colombia"
@@ -106,7 +106,7 @@ describe("<HouseCard />", () => {
       );
     });
 
-    it('Debería renderizar un "h3" que contenga el texto "Continent: " más el continente de cada "Country"', () => {
+    it('It should render an "h3" containing the text "Continent: " plus the continent of each "Country"', () => {
         expect(countryCard(countries[0]).find("h3").at(0).text()).toBe(
           "Continent: Antarctic"
         );
@@ -118,13 +118,15 @@ describe("<HouseCard />", () => {
         );
       });
 
-      it('Debería renderizar un componente <Link> que encierre cada "House" y debería redirigir a "/detail/:countryID"', () => {
-        // El valor de "houseId" lo tenes que sacar del objeto house, tiene una propiedad "id".
+      it('It should render a <Link> component that encloses each "Country" card and should redirect to "/detail/:countryID"', () => {
+    
         expect(countryCard(countries[0]).find(Link)).toHaveLength(1);
         expect(countryCard(countries[0]).find(Link).at(0).prop("to")).toEqual(
           "/detail/ATF"
         );
       });
+
+      
 
 
   });
