@@ -105,7 +105,7 @@ router.get('/:idPais',  async (req, res, next) => {
        
         return res.status(200).send(country);
     } catch(error) {
-        error.message = "The ID doen't exist"
+        error.message = "The ID doesn't exist"
         next(error);
     }
 
