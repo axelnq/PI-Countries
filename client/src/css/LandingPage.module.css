@@ -5,9 +5,9 @@ background: url('https://fondosmil.com/fondo/38916.png'); la mimsa que landingBa
 */
 .landing {
   background-image: url('../images/landingBackground.png');
-  /* Full height */
+  
   height: 100vh;
-  /* Center and scale the image nicely */
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

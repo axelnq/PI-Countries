@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
-// import { CONTINENT, TOURIST_ACTIVITY } from "../constantes/Order"
 import { useDispatch } from 'react-redux'
 import { filterCountriesContinent, filterCountriesActivities, resetFilters} from '../store/actions'
 import styles from '../css/Filter.module.css';
-
-
-
 
 export default function Filter() {
 
@@ -32,17 +28,6 @@ export default function Filter() {
            dispatch(filterCountriesActivities(e.target.value));
         }
     }
-    /*
-    const handleContinentFilter = (e) => {
-        setSelect({...select,[e.target.name]:e.target.value})
-        dispatch(filterCountriesContinent(e.target.value));
-    }
-    
-    const handleSeasonFilter = (e) => {
-        setSelect({...select,[e.target.name]:e.target.value})
-        dispatch(filterCountriesActivities(e.target.value));
-    }
-    */
   
     return (
         <div className={styles.filterContainer}>

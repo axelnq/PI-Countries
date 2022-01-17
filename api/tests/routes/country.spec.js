@@ -6,14 +6,13 @@ const { Country, conn } = require('../../src/db.js');
 
 const agent = session(app);
 const country =   {
+  
     id: "ATF",
-  name: "French Southern and Antarctic Lands",
-  flagImage: "https://flagcdn.com/tf.svg",
-  continent: "Antarctic",
-  capital: "Port-aux-Français",
-  subregion: null,
-  area: null,
-  population: 400
+    name: "French Southern and Antarctic Lands",
+    flagImage: "https://flagcdn.com/tf.svg",
+    continent: "Antarctic",
+    capital: "Port-aux-Français",
+    population: 400
  
 }
 

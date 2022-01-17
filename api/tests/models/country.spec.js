@@ -15,8 +15,26 @@ describe('Country model', () => {
           .catch(() => done());
       });
       it('should work when its a valid name', () => {
-        Country.create({ name: 'Argentina' });
+        Country.create({ id: "TST",
+        name: "Testing Country",
+        flagImage: "https://testing.svg",
+        continent: "Test Continent",
+        capital: "Tester",
+       });
       });
+
+      it('should throw an error if ID have more than 3 letters', (done) => {
+        Country.create({ id: "TSTS",
+        name: "Testing Country",
+        flagImage: "https://testing.svg",
+        continent: "Test Continent",
+        capital: "Tester",
+       })
+          .then(() => done(new Error('It requires a 3 letters ID')))
+          .catch(() => done());
+      });
+
+
     });
   });
 });

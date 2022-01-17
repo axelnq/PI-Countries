@@ -4,11 +4,15 @@
     height:360px;
     margin-top:20px;
     border-radius: 52px;
-    background-color: rgb(8, 52, 117);
+  
+ 
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(21, 21, 95) 26%, rgba(25,140,212,1) 110%);
+  
 }
 
 .countryCard:hover {
-    border: 5px double #248CD1;
+    border: 5px double #206fa3;
    
 }
 

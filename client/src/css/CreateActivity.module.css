@@ -25,10 +25,12 @@ ul.danger {
 .formActivity{
 	max-width: 500px;
 	padding: 10px 20px;
-	background: #f4f7f8;
 	margin: 10px auto;
 	padding: 20px;
-	background: #f4f7f8;
+	/*background: #f4f5f8;*/
+    /*background: #3a498b;*/
+    background-color: #427c6d;
+    
 	border-radius: 8px;
 	font-family: Georgia, "Times New Roman", Times, serif;
 }
@@ -36,7 +38,8 @@ ul.danger {
 .formActivity label {
 	display: block;
 	margin-bottom: 8px;
-    color:#000;
+    /*color:#000;*/
+    color:#fff;
     
 }
 
@@ -45,7 +48,7 @@ ul.danger {
     
 }
 .spanDiff {
-    color:#000;
+    color:#fff;
     font-size:30px;
 }
 
@@ -53,7 +56,6 @@ ul.danger {
 .formActivity textarea,
 .formActivity select {
 	font-family: Georgia, "Times New Roman", Times, serif;
-	background: rgba(255,255,255,.1);
 	border: none;
 	border-radius: 4px;
 	font-size: 15px;
@@ -64,12 +66,15 @@ ul.danger {
 	box-sizing: border-box; 
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box; 
-	background-color: #e8eeef;
-	color:#8a97a0;
+	/*background-color: #e8eeef;*/
+    background-color: #519584;
+    /*background-color: #515197;*/
+	/*color:#8a97a0;*/
+    color:#fff;
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
 	margin-bottom: 15px;
-    border:1px dotted rgb(53, 52, 52);
+    border:1px solid rgb(255, 255, 255);
 }
 
 
@@ -81,27 +86,30 @@ ul.danger {
 	padding: 19px 39px 18px 39px;
 	color: #FFF;
 	margin: 0 auto;
-	background: rgb(53, 74, 141);
+	background: rgb(36, 28, 58);
+    background-color: #33806c;
 	font-size: 18px;
 	text-align: center;
 	font-style: normal;
 	width: 100%;
-	border: 1px solid rgb(53, 74, 141);
-	border-width: 1px 1px 3px;
+	border: 1px solid rgb(246, 247, 248);
+	border-width: 1px 1px 1px;
 	margin-bottom: 10px;
 }
 .formActivity input[type="submit"]:hover
 {
-	background: #101275;
+	background: rgb(36, 28, 58);
 }
 .seasonField {
     display:flex;
     justify-content:space-between;
-    border:1px dotted #000;
+    border:1px dotted rgb(255, 255, 255);
     padding:5px;
     margin-bottom:15px;
 }
-
+.formActivity ::placeholder {
+    color:#fff;
+}
 .homeButton {
     margin: 0 auto;
     display: flex;
@@ -109,7 +117,6 @@ ul.danger {
     width: 150px;
     align-items: center;
     justify-content: center;
-    background-color: #eeeeee4b;
     border-radius: 3px;
     letter-spacing: 1px;
     transition: all 0.2s linear;
@@ -117,6 +124,9 @@ ul.danger {
     border: none;
     background: #fff;
     font-size:20px;
+    border:1px solid #fff;
+    background-color:rgb(43, 144, 136);
+    color:#000;
    }
    
    .homeButton > svg {
@@ -124,15 +134,17 @@ ul.danger {
     margin-left: 5px;
     font-size: 20px;
     transition: all 0.4s ease-in;
-   }
    
+   }
+    
    .homeButton:hover > svg {
     font-size: 1.2em;
     transform: translateX(-5px);
+    
    }
    
    .homeButton:hover {
-   
+    color:#fff;
     transform: translateY(-2px);
    }
 

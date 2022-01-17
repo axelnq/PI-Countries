@@ -1,5 +1,5 @@
+
 .searchBarContainer {
-   
     display:flex;
     height:50px;
     margin:8px;
@@ -8,4 +8,16 @@
 .searchBarContainer input,.searchBarContainer button {
    border-radius:10px;
    margin:1px;
+   border:1px solid #fff;
+   background-color:rgb(43, 144, 136);
+   color:#fff;
+   text-align:center;
+   font-weight: bold;
+}
+
+.searchBarContainer input::placeholder {
+    color:#fff;
+}
+.searchBarContainer button:hover {
+    border: 2px solid #fff;
 }

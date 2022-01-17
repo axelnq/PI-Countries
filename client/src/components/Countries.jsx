@@ -63,9 +63,9 @@ export default function Countries() {
             <Paged page={page}countriesPerPage={countriesPerPage} allCountries={countries.length} paged={paged}/>
 
             <div className={styles.countriesContainer}>
-            {countriesPage && countriesPage.map((country) => {
-                return <Country key={country.id} id={country.id} name={country.name} image={country.flagImage} continent={country.continent}/>
-            }) }
+                {countriesPage && countriesPage.map((country) => {
+                    return <Country key={country.id} id={country.id} name={country.name} image={country.flagImage} continent={country.continent}/>
+                }) }
             </div>
         </div>
     )

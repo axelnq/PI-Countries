@@ -6,4 +6,11 @@
 .orderContainer select, .orderContainer button {
     border-radius:10px;
     margin:1px;
+    width:100px;
+    text-align:center;
+    border:1px solid #fff;
+    background-color:rgb(43, 144, 136);
+    color:#fff;
+    font-weight: bold;
 }
+

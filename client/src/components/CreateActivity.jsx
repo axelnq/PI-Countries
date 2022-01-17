@@ -26,9 +26,7 @@ function validate(input){
     } else if(!(durationConditions.some(el => input.duration.toLowerCase().includes(el)))) {
         errors.duration = "Especify if the duration is hours or minutes"
     } 
-    /*else if (isNaN(input.duration)) {
-        errors.duration = "Must be a number"
-    }*/
+    
    
     if(!input.season) {
         errors.season = 'Select a season is required';

@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         validate: {
             min:1,
-            max:5
+            max:5,
         }
     },
     duration: {
-        type : DataTypes.STRING // We can save "120 minutes"  or "2 hours" in string
+        type : DataTypes.STRING //"120 minutes"  or "2 hours" in string
     },
     season: {
         type: DataTypes.ENUM('Summer', 'Spring', 'Fall', 'Winter')

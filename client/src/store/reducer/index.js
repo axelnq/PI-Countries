@@ -4,35 +4,10 @@ import { ASCENDING,  ALPHABETIC } from "../../constantes/Order"
 const initialState = {
     countries: [],
     allCountries: [],
-    activities: [],
     countryDetail: {},
     filteredCountriesContinent: [],
     filteredCountriesSeason: []
 }
-/*
-const filterCountries = (state,action,type) => {
-    // BUG DE LOS FILTROS AL REVES
-    let otherFilter = []
-    // revisar al reves los filtros 
-    // EL BUG ES CON EL ALL AL APLICAR OTRO FILTRO
-    if(type === FILTER_CONTINENT) {
-        otherFilter = state.filteredCountriesSeason;
-    } else {
-        otherFilter = state.filteredCountriesContinent
-    }
-    
-    let arrayToFilter = [];
-    otherFilter.length > 0 ? arrayToFilter = [...otherFilter] : arrayToFilter = [...state.allCountries];
-    // solid 
-    let resultArray = [];
-    action.payload === 'All' ? resultArray = [...state.allCountries] : 
-    type === FILTER_CONTINENT ? 
-    resultArray = arrayToFilter.filter(country => country.continent === action.payload) : resultArray = arrayToFilter.filter(country => country.touristactivities.some(activity => activity.season === action.payload))
-
-    return resultArray;
-}
-
-*/   
 
 export default function reducer (state=initialState, action) {
     switch (action.type) {
@@ -72,37 +47,34 @@ export default function reducer (state=initialState, action) {
         case FILTER_CONTINENT:
             
            
-            let countriesContinent = [];
-            state.filteredCountriesSeason.length > 0 ? countriesContinent = [...state.filteredCountriesSeason] : countriesContinent = [...state.allCountries];
+            let arrayToFilterContinent = [];
+            state.filteredCountriesSeason.length > 0 ? arrayToFilterContinent = [...state.filteredCountriesSeason] : arrayToFilterContinent = [...state.allCountries];
 
-            let continentFilter = [];
-            action.payload === 'All' ? continentFilter = [...state.allCountries] :
-            continentFilter = countriesContinent.filter(country => country.continent === action.payload)
+            let arrayResultContinent = [];
+            action.payload === 'All' ? arrayResultContinent = [...state.allCountries] :
+            arrayResultContinent = arrayToFilterContinent.filter(country => country.continent === action.payload)
            
-           // let continentFilter = filterCountries(state,action,FILTER_CONTINENT);
             return {
-                
                 ...state,
-                countries: continentFilter,
-                filteredCountriesContinent: action.payload === 'All' ? [] : continentFilter
+                countries: arrayResultContinent,
+                filteredCountriesContinent:  arrayResultContinent
                 
             }
         case FILTER_SEASON_ACTIVITY:
             
-            let countriesSeason = [];
-            state.filteredCountriesContinent.length > 0 ? countriesSeason = [...state.filteredCountriesContinent] : countriesSeason = [...state.allCountries]
+            let arrayToFilterSeason = [];
+            state.filteredCountriesContinent.length > 0 ? arrayToFilterSeason = [...state.filteredCountriesContinent] : arrayToFilterSeason = [...state.allCountries]
 
-            let seasonFilter = [];
-            action.payload === 'All' ? seasonFilter = [...state.allCountries]: seasonFilter = countriesSeason.filter(country => country.touristactivities.some(activity => activity.season === action.payload))
-           
+            let arrayResultSeason = [];
+            action.payload === 'All' ? arrayResultSeason = arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.length > 0): arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.some(activity => activity.season === action.payload))
 
-            // let seasonFilter = filterCountries(state,action,FILTER_SEASON_ACTIVITY);
+            
 
             return {
                 
                 ...state,
-                countries: seasonFilter,
-                filteredCountriesSeason: action.payload === 'All' ? [] : seasonFilter
+                countries: arrayResultSeason,
+                filteredCountriesSeason:  arrayResultSeason
                 
             }
        
@@ -122,9 +94,3 @@ export default function reducer (state=initialState, action) {
             return state;
     }
 }
-
-// FIX CSS : https://
-// REDONDEAR TODOS LSO BOTONES Y DEL PAGINADO  , TAMBIEN LA BANDERA DEL DETALLE Y DEL FORM
-
-
-// QUE EL DETALLE LA CARTA CON LA INFO SEA IGUAL A LA DEL HOME PERO MAS GRANDE , PARECIENDO QUE LA CARTA QUE SELECCIONE SE HACE MAS GRANDE 

@@ -15,7 +15,7 @@ export default function Order() {
     });
 
     const [disabled, setDisabled] = useState(true);
-    let contador = 0;
+  
     const handleSelectChange = (e) => {
         setSelect({
             ...select,

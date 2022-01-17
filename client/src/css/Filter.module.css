@@ -6,4 +6,8 @@
 .filterContainer select, .filterContainer button {
     border-radius:10px;
     margin:1px;
+    background-color:rgb(43, 144, 136);
+    color:#fff;
+    border:1px solid #fff;
+    font-weight: bold;
 }

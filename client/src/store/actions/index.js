@@ -2,7 +2,6 @@ import axios from 'axios';
 export const FETCH_COUNTRIES = 'FETCH_COUNTRIES';
 export const SEARCH_COUNTRY = 'SEARCH_COUNTRY';
 export const SORT = 'SORT';
-export const FILTER = 'FILTER';
 export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 export const FILTER_SEASON_ACTIVITY = 'FILTER_SEASON_ACTIVITY';
 export const FETCH_COUNTRY_DETAIL = 'FETCH_COUNTRY_DETAIL';
@@ -20,18 +19,7 @@ export  function fetchCountries() {
         } catch (e) {
              console.log(e)
         }
-        /*
-        axios.get('http://localhost:3001/api/countries/')
-        .then((countries) => {
-            dispatch({
-                type: FETCH_COUNTRIES,
-                payload: countries
-            })
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-        */
+        
     }
 }
 
@@ -46,6 +34,21 @@ export function searchCountry(name) {
         } catch (e) {
              console.log(e)
         }
+    }
+}
+
+export  function fetchCountryDetail(id) {
+    return async function(dispatch) {
+        try {
+            let countries = await axios.get('http://localhost:3001/api/countries/' + id)
+            dispatch({
+                type: FETCH_COUNTRY_DETAIL,
+                payload: countries.data   
+            })
+        } catch (e) {
+             console.log(e)
+        }
+     
     }
 }
 
@@ -71,49 +74,10 @@ export function filterCountriesActivities(filter) {
 }
 
 
-/*
-export function fetchCountry(name) {
-    return async function(dispatch) {
-        try {
-            let countries = await axios.get('http://localhost:3001/api/countries?name=' + name)
-            dispatch({
-                type: SEARCH_COUNTRY,
-                payload: countries.data   
-            })
-        } catch (e) {
-             console.log(e)
-        }
-    }
-}
-*/
-
-export  function fetchCountryDetail(id) {
-    return async function(dispatch) {
-        try {
-            let countries = await axios.get('http://localhost:3001/api/countries/' + id)
-            dispatch({
-                type: FETCH_COUNTRY_DETAIL,
-                payload: countries.data   
-            })
-        } catch (e) {
-             console.log(e)
-        }
-     
-    }
-}
-
 export function postActivity(activity) {
-    return async function(dispatch) {
+    return async function() {
         const response = await axios.post('http://localhost:3001/api/activity/',activity);
-
         return response.data;
-    }
-}
-
-export function filterCountries(filter) {
-    return {
-        type: FILTER,
-        payload:filter
     }
 }
 

@@ -6,8 +6,6 @@ const { Op } = require('sequelize');
 
 const axios = require('axios');
 
-const db = require('../db');
-
 const router = Router();
 
 const getApiInfo = async () => {
@@ -23,7 +21,7 @@ const getApiInfo = async () => {
             continent:country.region,
             population:country.population,
             flagImage:country.flags[0],
-            capital:capital // No lo pide en la ruta principal pero es obligatorio para agregar a la base de datos
+            capital:capital 
         }
     })
     return countriesApi;
@@ -90,20 +88,22 @@ router.get('/', async (req, res, next) => {
     
 })
 
-router.get('/:idPais',  async (req, res, next) => {
+router.get('/:countryID',  async (req, res, next) => {
   
-    const {idPais} = req.params;
+    const {countryID} = req.params;
     
     try {
-        const country = await getApiInfoDetail(idPais);
-        const countryDb = await Country.findOne({
-            where: {id: idPais},
+        const country = await getApiInfoDetail(countryID)
+        
+        const countryDb =  await Country.findOne({
+            where: {id: countryID},
             include: Touristactivity,
         })
-   
+
         countryDb.touristactivities ? country['touristactivities'] = countryDb.touristactivities : null;
-       
+
         return res.status(200).send(country);
+        
     } catch(error) {
         error.message = "The ID doesn't exist"
         next(error);
