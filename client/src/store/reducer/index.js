@@ -66,7 +66,8 @@ export default function reducer (state=initialState, action) {
             state.filteredCountriesContinent.length > 0 ? arrayToFilterSeason = [...state.filteredCountriesContinent] : arrayToFilterSeason = [...state.allCountries]
 
             let arrayResultSeason = [];
-            action.payload === 'All' ? arrayResultSeason = arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.length > 0): arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.some(activity => activity.season === action.payload))
+            action.payload === 'All' ? arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.length > 0):
+            arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.some(activity => activity.season === action.payload))
 
             
 
