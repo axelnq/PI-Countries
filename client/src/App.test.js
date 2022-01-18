@@ -44,22 +44,6 @@ describe("<App />", () => {
       const app = mount(componentToUse(routes[0]));
       expect(app.find(LandingPage)).toHaveLength(1);
     });
-    /*
-    xit('Landing page no debería ser renderizado en la ruta "/home"', () => {
-      const app = mount(componentToUse(routes[1]));
-      expect(app.find(LandingPage)).toHaveLength(0);
-    });
-
-    xit('Home debería ser renderizado en la ruta "/home"', () => {
-      const app = mount(componentToUse(routes[1]));
-      expect(app.find(Home)).toHaveLength(1);
-    });
-
-    xit('CreateActivity debería ser renderizado en la ruta "/createActivity"', () => {
-      const app = mount(componentToUse(routes[3]));
-      expect(app.find(CreateActivity)).toHaveLength(1);
-    });
-    */
   });
 
   
