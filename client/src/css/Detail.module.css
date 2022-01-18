@@ -50,7 +50,6 @@
     width: 150px;
     align-items: center;
     justify-content: center;
-    background-color: #eeeeee4b;
     border-radius: 3px;
     letter-spacing: 1px;
     transition: all 0.2s linear;
@@ -58,20 +57,27 @@
     border: none;
     background: #fff;
     font-size:20px;
+    border:1px solid #fff;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(25,180,212,1) 0%, rgb(21, 21, 95) 26%,rgba(2,0,36,1) 110%);
+    color:#fff;
    }
    
-.homeButton > svg {
-  margin-right: 5px;
-  margin-left: 5px;
-  font-size: 20px;
-  transition: all 0.4s ease-in;
-}
+   .homeButton > svg {
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 20px;
+    transition: all 0.4s ease-in;
    
-.homeButton:hover > svg {
-  font-size: 1.2em;
-  transform: translateX(-5px);
-}
+   }
+    
+   .homeButton:hover > svg {
+    font-size: 1.2em;
+    transform: translateX(-5px);
+    
+   }
    
-.homeButton:hover {
-  transform: translateY(-2px);
-}
+   .homeButton:hover {
+    color:#fff;
+    transform: translateY(-2px);
+   }
