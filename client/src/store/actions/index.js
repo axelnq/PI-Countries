@@ -6,6 +6,7 @@ export const FILTER_CONTINENT = 'FILTER_CONTINENT';
 export const FILTER_SEASON_ACTIVITY = 'FILTER_SEASON_ACTIVITY';
 export const FETCH_COUNTRY_DETAIL = 'FETCH_COUNTRY_DETAIL';
 export const RESET = 'RESET';
+export const POST_ACTIVITY = 'POST_ACTIVITY';
 
 
 export  function fetchCountries() {
@@ -75,9 +76,16 @@ export function filterCountriesActivities(filter) {
 
 
 export function postActivity(activity) {
-    return async function() {
+    return async function(dispatch) {
         const response = await axios.post('http://localhost:3001/api/activity/',activity);
-        return response.data;
+        try {
+        dispatch({
+            type: POST_ACTIVITY,
+            payload: response.data   
+        })
+        } catch(e) {
+            console.log(e)
+        }
     }
 }
 

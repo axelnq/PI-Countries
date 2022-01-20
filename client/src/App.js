@@ -1,5 +1,4 @@
 import './App.css';
-// import Countries from './components/Countries'
 import {Route, Switch} from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import Home from './components/Home'

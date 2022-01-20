@@ -1,4 +1,4 @@
-import { FETCH_COUNTRIES, SEARCH_COUNTRY, SORT,FILTER_CONTINENT, FILTER_SEASON_ACTIVITY, FETCH_COUNTRY_DETAIL, RESET} from '../actions';
+import { FETCH_COUNTRIES, SEARCH_COUNTRY, SORT,FILTER_CONTINENT, FILTER_SEASON_ACTIVITY, FETCH_COUNTRY_DETAIL, RESET,POST_ACTIVITY} from '../actions';
 import { ASCENDING,  ALPHABETIC } from "../../constantes/Order"
 
 const initialState = {
@@ -69,8 +69,6 @@ export default function reducer (state=initialState, action) {
             action.payload === 'All' ? arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.length > 0):
             arrayResultSeason = arrayToFilterSeason.filter(country => country.touristactivities.some(activity => activity.season === action.payload))
 
-            
-
             return {
                 
                 ...state,
@@ -90,6 +88,10 @@ export default function reducer (state=initialState, action) {
                 filteredCountriesContinent: [],
                 filteredCountriesSeason: [],
                 countries: state.allCountries
+            }
+        case POST_ACTIVITY:
+            return {
+                ...state
             }
         default:
             return state;
