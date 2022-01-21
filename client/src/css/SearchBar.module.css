@@ -21,3 +21,7 @@
 .searchBarContainer button:hover {
     border: 2px solid #fff;
 }
+
+.searchBarContainer button {
+    cursor:pointer;
+}

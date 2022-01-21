@@ -15,5 +15,18 @@
 }
 
 .orderContainer button:disabled {
-    background-color:rgb(25, 70, 66)
+    background-color:rgb(25, 70, 66);
+    cursor:auto;
+}
+
+.orderContainer button:disabled:hover {
+    border:1px solid #fff;
+}
+
+.orderContainer button {
+    cursor:pointer;
+}
+
+.orderContainer button:hover {
+    border: 2px solid #fff;
 }

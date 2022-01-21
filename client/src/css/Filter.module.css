@@ -11,3 +11,11 @@
     border:1px solid #fff;
     font-weight: bold;
 }
+
+.filterContainer button {
+    cursor:pointer;
+}
+
+.filterContainer button:hover {
+    border: 2px solid #fff;
+}

@@ -61,7 +61,19 @@ export default function CreateActivity() {
 
     const dispatch = useDispatch();
 
-    const countries = useSelector((state) => state.countries)
+    const countries = useSelector((state) => state.countries);
+
+    let orderedCountries = [...countries];
+    orderedCountries.sort(function (a, b) {
+        if (a.name > b.name) {
+            return  1;
+        }
+        if (a.name < b.name) {
+            return  -1
+        }
+        return 0;
+    })
+    
    
 
     useEffect(() => {
@@ -189,7 +201,7 @@ export default function CreateActivity() {
                 <div className={styles.countriesField}>
                     <select value={activity.countriesArray}  onChange={handleSelect}>
                         <option value="" disabled hidden>Choose 1 or more countries</option>
-                        {countries && countries.map((country) =>{
+                        {orderedCountries && orderedCountries.map((country) =>{
                         
                         return <option key={country.id} value={country.id}>{country.name}</ option>
                     })}
